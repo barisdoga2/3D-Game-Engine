@@ -13,11 +13,11 @@ import dev.engine.entities.Camera;
 import dev.engine.entities.Entity;
 import dev.engine.entities.Light;
 import dev.engine.models.TexturedModel;
-import dev.engine.renderEngine.entities.EntityRenderer;
-import dev.engine.renderEngine.entities.EntityShader;
-import dev.engine.renderEngine.terrains.TerrainRenderer;
-import dev.engine.renderEngine.terrains.TerrainShader;
+import dev.engine.shaders.EntityRenderer;
+import dev.engine.shaders.EntityShader;
 import dev.engine.terrains.Terrain;
+import dev.engine.terrains.TerrainRenderer;
+import dev.engine.terrains.TerrainShader;
 import dev.engine.utils.Maths;
 
 public class MasterRenderer {
