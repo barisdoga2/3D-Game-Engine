@@ -17,6 +17,7 @@ import dev.engine.renderEngine.entities.EntityRenderer;
 import dev.engine.renderEngine.entities.EntityShader;
 import dev.engine.renderEngine.terrains.TerrainRenderer;
 import dev.engine.renderEngine.terrains.TerrainShader;
+import dev.engine.skybox.SkyboxRenderer;
 import dev.engine.terrains.Terrain;
 import dev.engine.utils.Maths;
 
@@ -32,6 +33,8 @@ public class MasterRenderer {
 	private TerrainRenderer terrainRenderer;
 	private List<Terrain> allTerrains = new ArrayList<Terrain>();
 	
+	private SkyboxRenderer skyboxRenderer;
+	
 	public MasterRenderer(dev.engine.loaders.mapLoader.Map map) {
 		MasterRenderer.EnableCulling();
 		this.projectionMatrix = Maths.createProjectionMatrix();
@@ -41,10 +44,14 @@ public class MasterRenderer {
 		
 		this.terrainShader = new TerrainShader();
 		this.terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix, map);
+		
+		this.skyboxRenderer = new SkyboxRenderer(projectionMatrix);
 	}
 	
 	public void render(List<Light> lights, Camera camera) {
 		prepare();
+		
+		skyboxRenderer.render(camera);
 		
 		// Rendering Terrains
 		terrainShader.start();
@@ -56,7 +63,6 @@ public class MasterRenderer {
 		terrainShader.stop();
 		allTerrains.clear();
 		
-		
 		// Rendering Entities
 		entityShader.start();
 		entityShader.loadLights(lights);
@@ -64,7 +70,7 @@ public class MasterRenderer {
 		
 		entityRenderer.render(allEntities);
 		
-		entityShader.stop();
+		entityShader.stop();		
 		allEntities.clear();
 	}
 	
