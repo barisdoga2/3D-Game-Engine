@@ -11,8 +11,8 @@ import dev.engine.utils.Maths;
 
 public class EntityShader extends ShaderProgram{
 	
-	private static final String vertexShaderFile = "src/dev/engine/renderEngine/entities/entityVertexShader.vs";
-	private static final String fragmentShaderFile = "src/dev/engine/renderEngine/entities/entityFragmentShader.fs";
+	private static final String vertexShaderFile = "src/dev/engine/renderEngine/entities/entityVertexShader.glsl";
+	private static final String fragmentShaderFile = "src/dev/engine/renderEngine/entities/entityFragmentShader.glsl";
 	
 	private int location_transformationMatrix;
 	private int location_projectionMatrix;

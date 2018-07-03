@@ -10,8 +10,8 @@ import dev.engine.utils.Maths;
 
 public class TerrainShader extends ShaderProgram{
 	
-	private static final String vertexShaderFile = "src/dev/engine/renderEngine/terrains/terrainVertexShader.glsl";
-	private static final String fragmentShaderFile = "src/dev/engine/renderEngine/terrains/terrainFragmentShader.glsl";
+	private static final String vertexShaderFile = "src/dev/engine/renderEngine/terrains/terrainVertexShader.vs";
+	private static final String fragmentShaderFile = "src/dev/engine/renderEngine/terrains/terrainFragmentShader.fs";
 
 	private int location_transformationMatrix;
 	private int location_projectionMatrix;
