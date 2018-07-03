@@ -17,38 +17,41 @@ import dev.engine.renderEngine.MasterRenderer;
 import dev.engine.terrains.Terrain;
 
 public class EngineTester {
-	
+
 	private static Map testMap;
 
 	public static void main(String[] args) {
-		
+
 		DisplayManager.CreateDisplay();
-		
+
 		// Map Loader Test //
-		
+
 		GameStructs.init();
 		testMap = GameStructs.loadMap("testMap");
 		Terrain testTerrain = testMap.getAllTerrains().get(0);
-		
-		Player player = new Player("Player", new TexturedModel(OBJLoader.LoadObjModel("/models/objs/player"), new ModelTexture(ImageLoader.loadTexture("/models/textures/playerTexture"))), new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
+
+		Player player = new Player("Player",
+				new TexturedModel(OBJLoader.LoadObjModel("/models/objs/player"),
+						new ModelTexture(ImageLoader.loadTexture("/models/textures/playerTexture"))),
+				new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
 		player.setCurrentTerrain(testTerrain);
-		
+
 		Camera testCamera = new Camera(player);
-		
+
 		// --------------- //
-		
+
 		MasterRenderer masterRenderer = new MasterRenderer(testMap);
-		
-		while(!Display.isCloseRequested()){
+
+		while (!Display.isCloseRequested()) {
 			player.update();
 			testCamera.update();
-			
+
 			masterRenderer.processEntity(player);
 			masterRenderer.processEntities(testMap.getAllEntities());
 			masterRenderer.processTerrains(testMap.getAllTerrains());
-			
+
 			masterRenderer.render(testMap.getAllLights(), testCamera);
-			
+
 			DisplayManager.UpdateDisplay();
 		}
 

@@ -1,10 +1,10 @@
 package dev.engine.terrains;
 
 public class TerrainTexture {
-	
+
 	private String name;
 	private int textureID;
-	
+
 	public TerrainTexture(String name, int textureID) {
 		this.name = name;
 		this.textureID = textureID;
@@ -17,5 +17,5 @@ public class TerrainTexture {
 	public String getName() {
 		return name;
 	}
-	
+
 }

@@ -14,40 +14,40 @@ public class Map {
 	private List<Entity> allEntities;
 	private List<Terrain> allTerrains;
 	private List<Light> allLights;
-	
+
 	private float tilingFactor;
 	private float fogDensity;
 	private float fogGradient;
 	private Vector3f skyColor;
 	private float minDiffuseLighting;
 	private float minSpecularLighting;
-	
+
 	public Map() {
 		allEntities = new ArrayList<Entity>();
 		allTerrains = new ArrayList<Terrain>();
 		allLights = new ArrayList<Light>();
 	}
-	
+
 	public void addEntities(List<Entity> e) {
 		allEntities.addAll(e);
 	}
-	
+
 	public void addEntity(Entity e) {
 		allEntities.add(e);
 	}
-	
+
 	public void addTerrains(List<Terrain> t) {
 		allTerrains.addAll(t);
 	}
-	
+
 	public void addTerrain(Terrain t) {
 		allTerrains.add(t);
 	}
-	
+
 	public void addLights(List<Light> l) {
 		allLights.addAll(l);
 	}
-	
+
 	public void addLight(Light l) {
 		allLights.add(l);
 	}
@@ -111,5 +111,5 @@ public class Map {
 	public void setMinSpecularLighting(float minSpecularLighting) {
 		this.minSpecularLighting = minSpecularLighting;
 	}
-	
+
 }

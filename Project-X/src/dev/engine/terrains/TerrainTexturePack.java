@@ -1,14 +1,15 @@
 package dev.engine.terrains;
 
 public class TerrainTexturePack {
-	
+
 	public TerrainTexture backgroundTerrainTexture;
 	public TerrainTexture rTerrainTexture;
 	public TerrainTexture gTerrainTexture;
 	public TerrainTexture bTerrainTexture;
 	public TerrainTexture aTerrainTexture;
-	
-	public TerrainTexturePack(TerrainTexture backgroundTerrainTexture, TerrainTexture rTerrainTexture, TerrainTexture gTerrainTexture, TerrainTexture bTerrainTexture, TerrainTexture aTerrainTexture) {
+
+	public TerrainTexturePack(TerrainTexture backgroundTerrainTexture, TerrainTexture rTerrainTexture,
+			TerrainTexture gTerrainTexture, TerrainTexture bTerrainTexture, TerrainTexture aTerrainTexture) {
 		this.backgroundTerrainTexture = backgroundTerrainTexture;
 		this.rTerrainTexture = rTerrainTexture;
 		this.gTerrainTexture = gTerrainTexture;

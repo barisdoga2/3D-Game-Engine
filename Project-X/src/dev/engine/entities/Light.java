@@ -2,22 +2,22 @@ package dev.engine.entities;
 
 import org.lwjgl.util.vector.Vector3f;
 
-public class Light{
-	
+public class Light {
+
 	private String name;
 	private Vector3f position;
 	private Vector3f color;
 	private Vector3f attenuation;
-	
+
 	public Light(String name, Vector3f position, Vector3f color, Vector3f attenuation) {
 		this.name = name;
 		this.position = position;
 		this.color = color;
 		this.attenuation = attenuation;
 	}
-	
+
 	public void update() {
-		
+
 	}
 
 	public Vector3f getPosition() {
@@ -43,5 +43,5 @@ public class Light{
 	public String getName() {
 		return name;
 	}
-	
+
 }

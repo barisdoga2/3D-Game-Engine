@@ -16,41 +16,41 @@ import dev.engine.loaders.ImageLoader;
 import dev.engine.terrains.TerrainTexture;
 
 public class TerrainTextureLoader {
-	
+
 	private static final String XML_PATH = "res/xml/terrainTextures.xml";
-	
-	protected static List<TerrainTexture> loadAll(){
+
+	protected static List<TerrainTexture> loadAll() {
 		List<TerrainTexture> all = new ArrayList<TerrainTexture>();
-		try{
+		try {
 			File fXmlFile = new File(XML_PATH);
-			
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			
+
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
-			
-			doc.getDocumentElement().normalize();			
+
+			doc.getDocumentElement().normalize();
 			NodeList nList = doc.getElementsByTagName("terrainTexture");
-			
+
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
-					
+
 					String name = eElement.getAttribute("name");
 					String textureLocation = eElement.getElementsByTagName("textureLocation").item(0).getTextContent();
 					int textureID = ImageLoader.loadTexture(textureLocation);
-					
+
 					all.add(new TerrainTexture(name, textureID));
-					
+
 				}
 			}
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return all;
 	}
-	
+
 }
