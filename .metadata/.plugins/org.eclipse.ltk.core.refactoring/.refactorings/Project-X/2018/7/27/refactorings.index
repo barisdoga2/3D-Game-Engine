@@ -1,3 +1,7 @@
 1530553960001	Move elements
 1530553989572	Move elements
 1530553994213	Delete element
+1530598810156	Rename resource 'entityVertexShader.vs'
+1530598826229	Rename resource 'entityFragmentShader.fs'
+1530598833484	Rename resource 'terrainFragmentShader.fs'
+1530598837697	Rename resource 'terrainVertexShader.vs'
