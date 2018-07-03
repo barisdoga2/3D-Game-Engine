@@ -36,7 +36,7 @@ void main(){
 	vec4 gTextureColor = texture(gTexture, tiledTextureCoords) * blendMapColor.g;								// Multitexturing
 	vec4 bTextureColor = texture(bTexture, tiledTextureCoords) * blendMapColor.b;								// Multitexturing
 	vec4 aTextureColor = texture(aTexture, tiledTextureCoords) * (1.0 - blendMapColor.a);
-	vec4 totalTextureColor = backgroundTextureColor + rTextureColor + gTextureColor + bTextureColor + aTextureColor;	// Multitexturing
+	vec4 totalTextureColor = backgroundTextureColor + rTextureColor + gTextureColor + bTextureColor + aTextureColor;			// Multitexturing
 	
 	vec3 normalizedSurfaceNormal = normalize(surfaceNormal);													// Per-Pixel Lighting - Specular Lighting
 	vec3 normalizedToCameraVector = normalize(toCameraVector);													// Specular Lighting

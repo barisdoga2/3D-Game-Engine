@@ -32,7 +32,7 @@ public class TerrainTexturePack {
 		return bTerrainTexture;
 	}
 
-	public TerrainTexture getATerrainTexture() {
+	public TerrainTexture getaTerrainTexture() {
 		return aTerrainTexture;
 	}
 
