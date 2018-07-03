@@ -1,0 +1,81 @@
+package dev.engine;
+
+import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector3f;
+
+import dev.engine.entities.Camera;
+import dev.engine.entities.Entity;
+import dev.engine.entities.Light;
+import dev.engine.entities.Player;
+import dev.engine.loaders.ImageLoader;
+import dev.engine.loaders.Loader;
+import dev.engine.loaders.mapLoader.GameStructs;
+import dev.engine.loaders.mapLoader.Map;
+import dev.engine.models.ModelTexture;
+import dev.engine.models.OBJLoader;
+import dev.engine.models.RawModel;
+import dev.engine.models.TexturedModel;
+import dev.engine.renderEngine.DisplayManager;
+import dev.engine.renderEngine.MasterRenderer;
+import dev.engine.terrains.Terrain;
+import dev.engine.terrains.TerrainTexture;
+import dev.engine.terrains.TerrainTexturePack;
+
+public class EngineTester {
+	
+	private static Map loadedMap;
+
+	public static void main(String[] args) {
+		
+		DisplayManager.CreateDisplay();
+		MasterRenderer masterRenderer = new MasterRenderer();
+		
+		// Map Loader Test //
+		
+		GameStructs.init();
+		loadedMap = GameStructs.loadMap("testMap");
+		Terrain testTerrain = loadedMap.getAllTerrains().get(0);
+		
+		Light testLight = new Light("testLight", new Vector3f(1000, 1000, 1000), new Vector3f(1, 1, 1), new Vector3f());
+		
+		Player player = new Player("Player", new TexturedModel(OBJLoader.LoadObjModel("player"), new ModelTexture(ImageLoader.loadTexture("player"))), new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
+		player.setCurrentTerrain(testTerrain);
+		
+		Camera testCamera = new Camera(player);
+		
+		// --------------- //
+		
+		
+		
+		while(!Display.isCloseRequested()){
+			
+			dragonEntity.increaseRotation(0, 1, 0);
+			fernEntity.increaseRotation(0, 1, 0);
+			grassEntity.increaseRotation(0, 1, 0);
+			
+			player.update();
+			testCamera.update();
+			testLight.update();
+			
+			masterRenderer.processTerrain(testTerrain);
+			masterRenderer.processTerrains(loadedMap.getAllTerrains());
+			
+			masterRenderer.processEntity(player);
+			masterRenderer.processEntity(dragonEntity);
+			masterRenderer.processEntity(fernEntity);
+			masterRenderer.processEntity(grassEntity);
+			masterRenderer.processEntities(loadedMap.getAllEntities());
+			
+			masterRenderer.render(testLight, testCamera);
+			
+			DisplayManager.UpdateDisplay();
+		}
+
+		masterRenderer.cleanUp();
+		ImageLoader.cleanUp();
+		Loader.cleanUp();
+		DisplayManager.DestroyDisplay();
+
+	}
+
+}

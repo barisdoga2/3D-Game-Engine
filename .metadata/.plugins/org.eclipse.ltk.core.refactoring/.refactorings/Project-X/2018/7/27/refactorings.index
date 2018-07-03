@@ -7,3 +7,45 @@
 1530598837697	Rename resource 'terrainVertexShader.vs'
 1530599620147	Delete element
 1530599787233	Delete element
+1530600952862	Rename package 'dev.engine.xmlLoader'
+1530600976128	Copy compilation unit
+1530601079024	Rename package 'dev.engine.loaders.xmlLoader'
+1530601086185	Delete elements
+1530601854575	Move compilation unit
+1530603494696	Delete element
+1530603857919	Rename resource 'grassFlowers.png'
+1530604853741	Rename field 'entities'
+1530604856989	Rename field 'terrains'
+1530604965946	Copy files
+1530604971402	Copy files
+1530604979386	Copy files
+1530605003656	Rename resource 'grassyFlowers.png'
+1530605007848	Rename resource 'grassFlowers.png'
+1530605048474	Copy files
+1530605107727	Delete element
+1530605878070	Rename resource 'mapTest.xml'
+1530605897108	Move files
+1530606405202	Copy files
+1530606409351	Copy files
+1530606424988	Move files
+1530606436742	Rename resource 'obj'
+1530606441148	Move files
+1530606451140	Move file
+1530606462394	Move file
+1530606469523	Move files
+1530606473878	Delete elements
+1530608890000	Rename field 'loadedMap'
+1530609727075	Copy file
+1530609733066	Delete element
+1530609742863	Delete element
+1530609751110	Rename resource 'grassTexture.png'
+1530609756866	Rename resource 'fernTextureAtlas.png'
+1530609761653	Rename resource 'grass.png'
+1530609766971	Rename resource 'player.png'
+1530609770665	Rename resource 'stall.png'
+1530609774938	Rename resource 'tree.png'
+1530609791800	Rename resource 'fernTexture.png'
+1530609811010	Rename resource 'grassy.png'
+1530609815071	Rename resource 'grassyFlowers.png'
+1530614659274	Move file
+1530614662854	Rename resource 'lamp.png'

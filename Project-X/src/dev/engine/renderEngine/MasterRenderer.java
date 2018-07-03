@@ -26,62 +26,72 @@ public class MasterRenderer {
 	
 	private EntityShader entityShader;
 	private EntityRenderer entityRenderer;
-	private Map<TexturedModel, List<Entity>> entities = new HashMap<TexturedModel, List<Entity>>();
+	private Map<TexturedModel, List<Entity>> allEntities = new HashMap<TexturedModel, List<Entity>>();
 	
 	private TerrainShader terrainShader;
 	private TerrainRenderer terrainRenderer;
-	private List<Terrain> terrains = new ArrayList<Terrain>();
+	private List<Terrain> allTerrains = new ArrayList<Terrain>();
 	
-	public MasterRenderer() {
+	public MasterRenderer(dev.engine.loaders.mapLoader.Map map) {
 		MasterRenderer.EnableCulling();
 		this.projectionMatrix = Maths.createProjectionMatrix();
 		
 		this.entityShader = new EntityShader();
-		this.entityRenderer = new EntityRenderer(entityShader, projectionMatrix);
+		this.entityRenderer = new EntityRenderer(entityShader, projectionMatrix, map);
 		
 		this.terrainShader = new TerrainShader();
-		this.terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix);
+		this.terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix, map);
 	}
 	
-	public void render(Light light, Camera camera) {
+	public void render(List<Light> lights, Camera camera) {
 		prepare();
 		
 		// Rendering Terrains
 		terrainShader.start();
-		terrainShader.loadLight(light);
+		terrainShader.loadLights(lights);
 		terrainShader.loadViewMatrix(camera);
 		
-		terrainRenderer.render(terrains);
+		terrainRenderer.render(allTerrains);
 		
 		terrainShader.stop();
-		terrains.clear();
+		allTerrains.clear();
 		
 		
 		// Rendering Entities
 		entityShader.start();
-		entityShader.loadLight(light);
+		entityShader.loadLights(lights);
 		entityShader.loadViewMatrix(camera);
 		
-		entityRenderer.render(entities);
+		entityRenderer.render(allEntities);
 		
 		entityShader.stop();
-		entities.clear();
+		allEntities.clear();
+	}
+	
+	public void processEntities(List<Entity> entities) {
+		for(Entity entity : entities)
+			processEntity(entity);
 	}
 	
 	public void processEntity(Entity entity) {
 		TexturedModel texturedModel = entity.getTexturedModel();
-		List<Entity> batch = entities.get(texturedModel);
+		List<Entity> batch = this.allEntities.get(texturedModel);
 		if(batch != null) {
 			batch.add(entity);
 		}else {
 			List<Entity> newBatch = new ArrayList<Entity>();
 			newBatch.add(entity);
-			entities.put(texturedModel, newBatch);
+			this.allEntities.put(texturedModel, newBatch);
 		}
 	}
 	
+	public void processTerrains(List<Terrain> terrains) {
+		for(Terrain terrain : terrains)
+			processTerrain(terrain);
+	}
+	
 	public void processTerrain(Terrain terrain) {
-		terrains.add(terrain);
+		this.allTerrains.add(terrain);
 	}
 	
 	public static void EnableCulling() {

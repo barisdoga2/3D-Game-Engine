@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="dev.engine.logicEngine.MasterLogic"/>
+<fullyQualifiedTypeName name="dev.engine.entities.BaseEntity"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="dev.engine.entities.Entity"/>
+<fullyQualifiedTypeName name="dev.engine.terrains.Terrain"/>
+<fullyQualifiedTypeName name="dev.engine.models.Loader"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Node"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Element"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Document"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="dev.engine.terrains.TerrainTexturePack"/>
+<fullyQualifiedTypeName name="dev.engine.loaders.ImageLoader"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="dev.engine.loaders.mapLoader.Map"/>
+<fullyQualifiedTypeName name="dev.engine.terrains.TerrainTexture"/>
+<fullyQualifiedTypeName name="dev.engine.loaders.mapLoader.GameStructs"/>
+<fullyQualifiedTypeName name="dev.engine.loaders.mapLoader.MapLoader.MapSettings"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.lwjgl.util.vector.Vector3f"/>
+</qualifiedTypeNameHistroy>

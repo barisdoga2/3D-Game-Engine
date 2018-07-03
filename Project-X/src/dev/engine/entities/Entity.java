@@ -7,6 +7,7 @@ import dev.engine.terrains.Terrain;
 
 public class Entity {
 	
+	private String name;
 	private Terrain currentTerrain;
 
 	private TexturedModel model;
@@ -24,14 +25,16 @@ public class Entity {
 	 * [6 , 7 , 8]
 	 */
 
-	public Entity(TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
+	public Entity(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
+		this.name = name;
 		this.model = model;
 		this.position = position;
 		this.rotation = rotation;
 		this.scale = scale;
 	}
 	
-	public Entity(TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale, int textureAtlasIndex) {
+	public Entity(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale, int textureAtlasIndex) {
+		this.name = name;
 		this.textureAtlasIndex = textureAtlasIndex;
 		this.model = model;
 		this.position = position;
@@ -121,6 +124,10 @@ public class Entity {
 
 	public void setCurrentTerrain(Terrain currentTerrain) {
 		this.currentTerrain = currentTerrain;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 }

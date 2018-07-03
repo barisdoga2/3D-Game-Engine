@@ -10,6 +10,8 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
+import dev.engine.loaders.Loader;
+
 public class OBJLoader {
 	
 	public static RawModel LoadObjModel(String fileName) {

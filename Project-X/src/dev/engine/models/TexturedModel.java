@@ -2,8 +2,18 @@ package dev.engine.models;
 
 public class TexturedModel {
 	
+	private String name;
 	private RawModel rawModel;
 	private ModelTexture modelTexture;
+	
+	/**
+	 * ASDASD
+	 */
+	public TexturedModel(String name, RawModel rawModel, ModelTexture modelTexture) {
+		this.name = name;
+		this.rawModel = rawModel;
+		this.modelTexture = modelTexture;
+	}
 	
 	public TexturedModel(RawModel rawModel, ModelTexture modelTexture) {
 		this.rawModel = rawModel;
@@ -16,6 +26,10 @@ public class TexturedModel {
 	
 	public ModelTexture getModelTexture() {
 		return this.modelTexture;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 }

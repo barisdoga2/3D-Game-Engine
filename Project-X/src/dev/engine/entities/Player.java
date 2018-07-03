@@ -12,8 +12,8 @@ public class Player extends Entity{
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
 
-	public Player(TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
-		super(model, position, rotation, scale);
+	public Player(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
+		super(name, model, position, rotation, scale);
 	}
 	
 	@Override

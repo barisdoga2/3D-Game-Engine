@@ -1,0 +1,36 @@
+package dev.engine.loaders.mapLoader;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import dev.engine.entities.Entity;
+import dev.engine.entities.Light;
+import dev.engine.terrains.Terrain;
+
+public class Map {
+	
+	private List<Entity> allEntities = new ArrayList<Entity>();
+	private List<Terrain> allTerrains = new ArrayList<Terrain>();
+	private List<Light> allLights = new ArrayList<Light>();
+	
+	public Map() {
+		
+	}
+	
+	public void addEntity(List<Entity> e) {
+		allEntities.addAll(e);
+	}
+	
+	public void addEntity(Entity e) {
+		allEntities.add(e);
+	}
+	
+	public void addTerrain(Terrain t) {
+		allTerrains.add(t);
+	}
+	
+	public void addLight(Light l) {
+		allLights.add(l);
+	}
+	
+}
