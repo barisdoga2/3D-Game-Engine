@@ -23,6 +23,8 @@ public class TerrainRenderer {
 		this.terrainShader = terrainShader;
 		
 		terrainShader.start();
+		terrainShader.loadTilingFactor(40);
+		terrainShader.loadFogVariables(0.004f, 11.0f);
 		terrainShader.connectTextureUnits();
 		terrainShader.loadProjectionMatrix(projectionMatrix);
 		terrainShader.loadSkyColor(EngineConfig.SKY_COLOR);

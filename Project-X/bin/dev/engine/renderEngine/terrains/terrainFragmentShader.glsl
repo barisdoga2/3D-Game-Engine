@@ -12,6 +12,7 @@ uniform sampler2D rTexture;					// Multitexturing
 uniform sampler2D gTexture;					// Multitexturing
 uniform sampler2D bTexture;					// Multitexturing
 uniform sampler2D blendMapTexture;			// Multitexturing
+uniform float tilingFactor;					// Multitexturing
 
 uniform vec3 lightColor;					// Per-Pixel Lighting
 uniform float shineDamper;					// Specular Lighting
@@ -24,7 +25,7 @@ void main(){
 	
 	vec4 blendMapColor = texture(blendMapTexture, pass_textureCoords);											// Multitexturing
 	float backgroundTextureAmount = 1 - (blendMapColor.r + blendMapColor.g + blendMapColor.b);					// Multitexturing
-	vec2 tiledTextureCoords = pass_textureCoords * 20;														// Multitexturing
+	vec2 tiledTextureCoords = pass_textureCoords * tilingFactor;												// Multitexturing
 	vec4 backgroundTextureColor = texture(backgroundTexture, tiledTextureCoords) * backgroundTextureAmount;		// Multitexturing
 	vec4 rTextureColor = texture(rTexture, tiledTextureCoords) * blendMapColor.r;								// Multitexturing
 	vec4 gTextureColor = texture(gTexture, tiledTextureCoords) * blendMapColor.g;								// Multitexturing

@@ -1,8 +1,5 @@
 #version 400 core
 
-const float densityOfFog = 0.004;		// Fog
-const float gradientOfFog = 11.0;		// Fog
-
 in vec3 position;
 in vec2 textureCoords;
 in vec3 normal;							// Per-Pixel Lighting
@@ -11,6 +8,8 @@ uniform mat4 transformationMatrix;
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform vec3 lightPosition;				// Per-Pixel Lighting
+uniform float densityOfFog;				// Fog
+uniform float gradientOfFog;			// Fog
 
 out vec2 pass_textureCoords;
 out vec3 surfaceNormal; 				// Per-Pixel Lighting

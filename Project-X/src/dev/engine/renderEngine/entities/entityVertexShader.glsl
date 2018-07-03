@@ -1,8 +1,5 @@
 #version 400 core
 
-const float densityOfFog = 0.004;		// Fog
-const float gradientOfFog = 11.0;		// Fog
-
 in vec3 position;
 in vec2 textureCoords;
 in vec3 normal;							// Per-Pixel Lighting
@@ -15,6 +12,8 @@ uniform vec3 lightPosition;				// Per-Pixel Lighting
 uniform float useFakeLighting;			// For 2D Objects
 uniform float atlasNumberOfRows;		// Texture Atlases
 uniform vec2 atlasOffsets;				// Texture Atlases
+uniform float densityOfFog;				// Fog
+uniform float gradientOfFog;			// Fog
 
 out vec2 pass_textureCoords;
 out vec3 surfaceNormal; 				// Per-Pixel Lighting

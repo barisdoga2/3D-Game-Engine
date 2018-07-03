@@ -25,6 +25,7 @@ public class EntityRenderer {
 		this.entityShader = entityShader;
 		
 		entityShader.start();
+		entityShader.loadFogVariables(0.004f, 11.0f);
 		entityShader.loadProjectionMatrix(projectionMatrix);
 		entityShader.loadSkyColor(EngineConfig.SKY_COLOR);
 		entityShader.stop();

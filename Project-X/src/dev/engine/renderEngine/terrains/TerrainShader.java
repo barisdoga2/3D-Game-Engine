@@ -26,6 +26,9 @@ public class TerrainShader extends ShaderProgram{
 	private int location_gTexture;
 	private int location_bTexture;
 	private int location_blendMapTexture;
+	private int location_densityOfFog;
+	private int location_gradientOfFog;
+	private int location_tilingFactor;
 	
 	public TerrainShader() {
 		super(vertexShaderFile, fragmentShaderFile);
@@ -53,7 +56,9 @@ public class TerrainShader extends ShaderProgram{
 		this.location_gTexture = super.getUniformLocation("gTexture");
 		this.location_bTexture = super.getUniformLocation("bTexture");
 		this.location_blendMapTexture = super.getUniformLocation("blendMapTexture");
-		
+		this.location_densityOfFog = super.getUniformLocation("densityOfFog");
+		this.location_gradientOfFog = super.getUniformLocation("gradientOfFog");
+		this.location_tilingFactor = super.getUniformLocation("tilingFactor");
 	}
 	
 	public void loadTransformationMatrix(Matrix4f transformationMatrix) {
@@ -90,5 +95,14 @@ public class TerrainShader extends ShaderProgram{
 		super.loadInt(location_bTexture, 3);
 		super.loadInt(location_blendMapTexture, 4);
 	}
-
+	
+	public void loadFogVariables(float densityOfFog, float gradientOfFog) {
+		super.loadFloat(location_densityOfFog, densityOfFog);
+		super.loadFloat(location_gradientOfFog, gradientOfFog);
+	}
+	
+	public void loadTilingFactor(float tilingFactor) {
+		super.loadFloat(location_tilingFactor, tilingFactor);
+	}
+	
 }

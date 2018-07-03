@@ -25,6 +25,8 @@ public class EntityShader extends ShaderProgram{
 	private int location_skyColor;
 	private int location_atlasNumberOfRows;
 	private int location_atlasOffsets;
+	private int location_densityOfFog;
+	private int location_gradientOfFog;
 
 	public EntityShader() {
 		super(vertexShaderFile, fragmentShaderFile);
@@ -50,7 +52,8 @@ public class EntityShader extends ShaderProgram{
 		this.location_skyColor = super.getUniformLocation("skyColor");
 		this.location_atlasNumberOfRows = super.getUniformLocation("atlasNumberOfRows");
 		this.location_atlasOffsets = super.getUniformLocation("atlasOffsets");
-		
+		this.location_densityOfFog = super.getUniformLocation("densityOfFog");
+		this.location_gradientOfFog = super.getUniformLocation("gradientOfFog");
 	}
 	
 	public void loadTransformationMatrix(Matrix4f transformationMatrix) {
@@ -90,6 +93,11 @@ public class EntityShader extends ShaderProgram{
 	
 	public void loadAtlasOffsets(float atlasXOffset, float atlasYOffset) {
 		super.loadVector2f(location_atlasOffsets, new Vector2f(atlasXOffset, atlasYOffset));
+	}
+	
+	public void loadFogVariables(float densityOfFog, float gradientOfFog) {
+		super.loadFloat(location_densityOfFog, densityOfFog);
+		super.loadFloat(location_gradientOfFog, gradientOfFog);
 	}
 	
 }
