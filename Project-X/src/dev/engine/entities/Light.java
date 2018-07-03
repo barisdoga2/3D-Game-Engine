@@ -2,7 +2,7 @@ package dev.engine.entities;
 
 import org.lwjgl.util.vector.Vector3f;
 
-public class Light {
+public class Light{
 	
 	private Vector3f position;
 	private Vector3f color;
@@ -10,6 +10,10 @@ public class Light {
 	public Light(Vector3f position, Vector3f color) {
 		this.position = position;
 		this.color = color;
+	}
+	
+	public void update() {
+		
 	}
 
 	public Vector3f getPosition() {

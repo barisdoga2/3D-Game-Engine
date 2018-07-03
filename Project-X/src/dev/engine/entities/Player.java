@@ -6,7 +6,6 @@ import org.lwjgl.util.vector.Vector3f;
 import dev.engine.EngineConfig;
 import dev.engine.models.TexturedModel;
 import dev.engine.renderEngine.DisplayManager;
-import dev.engine.terrains.Terrain;
 
 public class Player extends Entity{
 	
@@ -17,7 +16,12 @@ public class Player extends Entity{
 		super(model, position, rotation, scale);
 	}
 	
-	public void move(Terrain currentTerrain) {
+	@Override
+	public void update() {
+		move();
+	}
+	
+	private void move() {
 		checkInputs();
 		
 		super.increaseRotation(0, currentTurnSpeed * DisplayManager.getDeltaTimeSeconds(), 0);
@@ -27,7 +31,8 @@ public class Player extends Entity{
 		float dz = (float) (distance * Math.cos(Math.toRadians(getRotation().y)));
 		super.increasePosition(dx, 0, dz);
 		
-		super.getPosition().y = currentTerrain.getHeight(getPosition().x, getPosition().z);
+		if(this.getCurrentTerrain() != null)
+			super.getPosition().y = this.getCurrentTerrain().getHeight(getPosition().x, getPosition().z);
 	}
 	
 	private void checkInputs() {

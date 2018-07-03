@@ -18,7 +18,11 @@ public class Camera {
 		this.player = player;
 	}
 	
-	public void move() {
+	public void update() {
+		move();
+	}
+	
+	private void move() {
 		calculateZoom();
 		calculatePitch();
 		calculateAngleAroundPlayer();

@@ -1,0 +1,7 @@
+package dev.engine.entities;
+
+public class BaseEntity {
+	
+	
+	
+}

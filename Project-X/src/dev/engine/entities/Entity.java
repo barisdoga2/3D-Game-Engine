@@ -3,9 +3,12 @@ package dev.engine.entities;
 import org.lwjgl.util.vector.Vector3f;
 
 import dev.engine.models.TexturedModel;
+import dev.engine.terrains.Terrain;
 
 public class Entity {
 	
+	private Terrain currentTerrain;
+
 	private TexturedModel model;
 	
 	private Vector3f position;
@@ -34,6 +37,10 @@ public class Entity {
 		this.position = position;
 		this.rotation = rotation;
 		this.scale = scale;
+	}
+	
+	public void update() {
+		
 	}
 	
 	public float getTextureXOffset() {
@@ -106,6 +113,14 @@ public class Entity {
 
 	public void setScale(Vector3f scale) {
 		this.scale = scale;
+	}
+	
+	public Terrain getCurrentTerrain() {
+		return currentTerrain;
+	}
+
+	public void setCurrentTerrain(Terrain currentTerrain) {
+		this.currentTerrain = currentTerrain;
 	}
 	
 }
