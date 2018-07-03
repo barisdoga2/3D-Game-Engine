@@ -6,6 +6,7 @@ import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import dev.engine.EngineConfig;
+import dev.engine.entities.Camera;
 
 
 public class Maths {
@@ -23,7 +24,7 @@ public class Maths {
 		return matrix;
 	}
 	
-	public static Matrix4f createViewMatrix(dev.engine.entities.Camera camera) {
+	public static Matrix4f createViewMatrix(Camera camera) {
 		Matrix4f viewMatrix = new Matrix4f();
 		viewMatrix.setIdentity();
 		
