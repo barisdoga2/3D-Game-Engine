@@ -1,25 +1,23 @@
 package dev.engine.models;
 
 public class ModelTexture {
-	
+
 	private int textureID;
-	
+
 	private String name;
 	private boolean hasTransparency = false;
 	private boolean hasFakeLighting = false;
 	private float shineDamper = 1;
 	private float reflectivity = 0;
-	
+
 	private int atlasNumberOfRows = 1;
 	/*
-	 * Atlas Indexing Example
-	 * Atlases must be square.
-	 * [0 , 1 , 2]
-	 * [3 , 4 , 5]
-	 * [6 , 7 , 8]
+	 * Atlas Indexing Example Atlases must be square. [0 , 1 , 2] [3 , 4 , 5] [6 , 7
+	 * , 8]
 	 */
-	
-	public ModelTexture(String name, int textureID, boolean hasTransparency, boolean hasFakeLighting, float shineDamper, float reflectivity, int atlasNumberOfRows) {
+
+	public ModelTexture(String name, int textureID, boolean hasTransparency, boolean hasFakeLighting, float shineDamper,
+			float reflectivity, int atlasNumberOfRows) {
 		this.name = name;
 		this.textureID = textureID;
 		this.hasTransparency = hasFakeLighting;
@@ -28,11 +26,11 @@ public class ModelTexture {
 		this.reflectivity = reflectivity;
 		this.atlasNumberOfRows = atlasNumberOfRows;
 	}
-	
+
 	public ModelTexture(int textureID) {
 		this.textureID = textureID;
 	}
-	
+
 	public int getTextureID() {
 		return this.textureID;
 	}
@@ -80,5 +78,5 @@ public class ModelTexture {
 	public String getName() {
 		return name;
 	}
-	
+
 }

@@ -6,23 +6,20 @@ import dev.engine.models.TexturedModel;
 import dev.engine.terrains.Terrain;
 
 public class Entity {
-	
+
 	private String name;
 	private Terrain currentTerrain;
 
 	private TexturedModel model;
-	
+
 	private Vector3f position;
 	private Vector3f rotation;
 	private Vector3f scale;
-	
+
 	private int textureAtlasIndex = 0;
 	/*
-	 * Atlas Indexing Example
-	 * Atlases must be square.
-	 * [0 , 1 , 2]
-	 * [3 , 4 , 5]
-	 * [6 , 7 , 8]
+	 * Atlas Indexing Example Atlases must be square. [0 , 1 , 2] [3 , 4 , 5] [6 , 7
+	 * , 8]
 	 */
 
 	public Entity(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
@@ -32,8 +29,9 @@ public class Entity {
 		this.rotation = rotation;
 		this.scale = scale;
 	}
-	
-	public Entity(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale, int textureAtlasIndex) {
+
+	public Entity(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale,
+			int textureAtlasIndex) {
 		this.name = name;
 		this.textureAtlasIndex = textureAtlasIndex;
 		this.model = model;
@@ -41,33 +39,33 @@ public class Entity {
 		this.rotation = rotation;
 		this.scale = scale;
 	}
-	
+
 	public void update() {
-		
+
 	}
-	
+
 	public float getTextureXOffset() {
 		int column = textureAtlasIndex % model.getModelTexture().getAtlasNumberOfRows();
 		return (float) column / (float) model.getModelTexture().getAtlasNumberOfRows();
 	}
-	
+
 	public float getTextureYOffset() {
 		int row = textureAtlasIndex / model.getModelTexture().getAtlasNumberOfRows();
 		return (float) row / (float) model.getModelTexture().getAtlasNumberOfRows();
 	}
-	
+
 	public void increasePosition(Vector3f position) {
 		this.increasePosition(position.x, position.y, position.z);
 	}
-	
+
 	public void increaseRotation(Vector3f rotation) {
 		this.increasePosition(rotation.x, rotation.y, rotation.z);
 	}
-	
+
 	public void increaseScale(Vector3f scale) {
 		this.increaseScale(scale.x, scale.y, scale.z);
 	}
-	
+
 	public void increasePosition(float dX, float dY, float dZ) {
 		this.position.x += dX;
 		this.position.y += dY;
@@ -79,7 +77,7 @@ public class Entity {
 		this.rotation.y += rY;
 		this.rotation.z += rZ;
 	}
-	
+
 	public void increaseScale(float sX, float sY, float sZ) {
 		this.scale.x += sX;
 		this.scale.y += sY;
@@ -117,7 +115,7 @@ public class Entity {
 	public void setScale(Vector3f scale) {
 		this.scale = scale;
 	}
-	
+
 	public Terrain getCurrentTerrain() {
 		return currentTerrain;
 	}
@@ -129,5 +127,5 @@ public class Entity {
 	public String getName() {
 		return name;
 	}
-	
+
 }

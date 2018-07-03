@@ -44,7 +44,7 @@ public class EngineConfig {
 		return instance;
 	}
 
-	public int getInt(String key) {		
+	public int getInt(String key) {
 		if (!isCached(key)) {
 			int value = Integer.parseInt(configuration.get(key));
 
@@ -94,7 +94,7 @@ public class EngineConfig {
 
 		return flag;
 	}
-	
+
 	private boolean isExists(String key) {
 		return configuration.containsKey(key);
 	}
@@ -104,7 +104,7 @@ public class EngineConfig {
 
 		String line;
 		while ((line = br.readLine()) != null) {
-			line = line.trim();			
+			line = line.trim();
 			if (line.length() == 0 || line.charAt(0) == '[' || !line.contains("="))
 				continue;
 
