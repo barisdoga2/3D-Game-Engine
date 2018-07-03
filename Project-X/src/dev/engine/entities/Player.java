@@ -9,11 +9,18 @@ import dev.engine.renderEngine.DisplayManager;
 
 public class Player extends Entity{
 	
+	private float mSpeed;
+	private float mTurnSpeed;
+	
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
 
 	public Player(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
 		super(name, model, position, rotation, scale);
+		
+		EngineConfig config = EngineConfig.getInstance();
+		mSpeed = config.getFloat("player_run_speed");
+		mTurnSpeed = config.getFloat("player_turn_speed");
 	}
 	
 	@Override
@@ -37,17 +44,17 @@ public class Player extends Entity{
 	
 	private void checkInputs() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.currentSpeed = EngineConfig.PLAYER_RUN_SPEED;
+			this.currentSpeed = mSpeed;
 		}else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.currentSpeed = -EngineConfig.PLAYER_RUN_SPEED;
+			this.currentSpeed = -mSpeed;
 		}else {
 			this.currentSpeed = 0;
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.currentTurnSpeed = EngineConfig.PLAYER_TURN_SPEED;
+			this.currentTurnSpeed = mTurnSpeed;
 		}else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.currentTurnSpeed = -EngineConfig.PLAYER_TURN_SPEED;
+			this.currentTurnSpeed = -mTurnSpeed;
 		}else {
 			this.currentTurnSpeed = 0;
 		}

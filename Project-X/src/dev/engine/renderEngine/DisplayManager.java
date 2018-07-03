@@ -12,26 +12,34 @@ import dev.engine.EngineConfig;
 
 public class DisplayManager {
 	
+	private static int fpsCap;
 	private static long lasftFrameTime;
 	private static float deltaTimeSeconds;
 	
 	public static void CreateDisplay() {
 		ContextAttribs attribs = new ContextAttribs(3,2).withForwardCompatible(true).withProfileCore(true);
 		
+		EngineConfig config = EngineConfig.getInstance();
+		
+		int width = config.getInt("screen_width");
+		int height = config.getInt("screen_height");
+		
 		try {
-			Display.setDisplayMode(new DisplayMode(EngineConfig.SCREEN_WIDTH, EngineConfig.SCREEN_HEIGHT));
-			Display.create(new PixelFormat().withSamples(EngineConfig.ANTIALIASING_SAMPLE_COUNT), attribs);
-			Display.setTitle(EngineConfig.DISPLAY_TITLE);
+			Display.setDisplayMode(new DisplayMode(width, height));
+			Display.create(new PixelFormat().withSamples(config.getInt("aa_samples")), attribs);
+			Display.setTitle(config.getString("title"));
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
 		
-		GL11.glViewport(0, 0, EngineConfig.SCREEN_WIDTH, EngineConfig.SCREEN_HEIGHT);
+		fpsCap = config.getInt("fps_cap");
+		
+		GL11.glViewport(0, 0, width, height);
 		lasftFrameTime = getCurrentTime();
 	}
 	
 	public static void UpdateDisplay() {
-		Display.sync(EngineConfig.TARGET_FPS);
+		Display.sync(fpsCap);
 		Display.update();
 		
 		long currentFrameTime = getCurrentTime();

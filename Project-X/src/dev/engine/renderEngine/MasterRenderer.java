@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
 
 import dev.engine.EngineConfig;
 import dev.engine.entities.Camera;
@@ -32,6 +33,8 @@ public class MasterRenderer {
 	private TerrainRenderer terrainRenderer;
 	private List<Terrain> allTerrains = new ArrayList<Terrain>();
 	
+	private Vector3f skyColor;
+	
 	public MasterRenderer(dev.engine.loaders.mapLoader.Map map) {
 		MasterRenderer.EnableCulling();
 		this.projectionMatrix = Maths.createProjectionMatrix();
@@ -41,6 +44,9 @@ public class MasterRenderer {
 		
 		this.terrainShader = new TerrainShader();
 		this.terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix, map);
+		
+		EngineConfig config = EngineConfig.getInstance();
+		skyColor = config.getVector3f("sky_color");
 	}
 	
 	public void render(List<Light> lights, Camera camera) {
@@ -106,7 +112,7 @@ public class MasterRenderer {
 	public void prepare() {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT);
-		GL11.glClearColor(EngineConfig.SKY_COLOR.x, EngineConfig.SKY_COLOR.y, EngineConfig.SKY_COLOR.z, 1);
+		GL11.glClearColor(skyColor.x, skyColor.y, skyColor.z, 1);
 	}
 	
 	public void cleanUp() {
