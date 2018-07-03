@@ -16,6 +16,7 @@ public class Player extends Entity{
 		super(name, model, position, rotation, scale);
 	}
 	
+	
 	@Override
 	public void update() {
 		move();
@@ -36,6 +37,7 @@ public class Player extends Entity{
 	}
 	
 	private void checkInputs() {
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.currentSpeed = EngineConfig.PLAYER_RUN_SPEED;
 		}else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
@@ -51,6 +53,7 @@ public class Player extends Entity{
 		}else {
 			this.currentTurnSpeed = 0;
 		}
+		
 	}
 	
 }
