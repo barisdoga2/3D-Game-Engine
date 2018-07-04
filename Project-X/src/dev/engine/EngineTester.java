@@ -15,6 +15,8 @@ import dev.engine.renderEngine.DisplayManager;
 import dev.engine.renderEngine.MasterRenderer;
 import dev.engine.terrains.Terrain;
 import dev.engine.textures.ModelTexture;
+import dev.engine.utils.Maths;
+import dev.engine.utils.MousePicker;
 
 public class EngineTester {
 
@@ -40,14 +42,17 @@ public class EngineTester {
 		Camera testCamera = new Camera(player);
 
 		// --------------- //
-
+		MousePicker mousePicker = new MousePicker(testCamera, Maths.createProjectionMatrix(), testMap.getAllTerrains());
 		MasterRenderer masterRenderer = new MasterRenderer(testMap);
 
 		while (!Display.isCloseRequested()) {
-			System.out.println(player.getPosition().x + " " + player.getPosition().y + " " + player.getPosition().z);
 			player.update();
 			testCamera.update();
+			mousePicker.update();
+			Vector3f vec = mousePicker.getCurrentTerrainPoint();
+			System.out.println(vec.x + " " + vec.y + " " + vec.z);
 
+			
 			masterRenderer.processEntity(player);
 			masterRenderer.processEntities(testMap.getAllEntities());
 			masterRenderer.processTerrains(testMap.getAllTerrains());

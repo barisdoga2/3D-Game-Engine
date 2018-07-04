@@ -11,7 +11,7 @@ import dev.engine.utils.Maths;
 
 public class Terrain {
 
-	private static final float SIZE = 1600;
+	public static final float SIZE = 1600;
 	private static final float MAX_HEIGHT = 100;
 	private static final float MAX_PIXEL_COLOR = 256 * 256 * 256;
 

@@ -1,6 +1,7 @@
 package dev.engine.renderEngine;
 
-import java.lang.reflect.Method;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -22,35 +23,10 @@ public class DisplayManager {
 		ContextAttribs attribs = new ContextAttribs(3, 2).withForwardCompatible(true).withProfileCore(true);
 
 		EngineConfig config = EngineConfig.getInstance();
-
-		int width = config.getInt("screen_width");
-		int height = config.getInt("screen_height");
-		String osName = System.getProperty( "os.name" ).toLowerCase();
-		String className = null;
-		String methodName = "getUsername";
-
-		if( osName.contains( "windows" ) ){
-		    className = "com.sun.security.auth.module.NTSystem";
-		    methodName = "getName";
-		}else if( osName.contains( "linux" ) ){
-		    className = "com.sun.security.auth.module.UnixSystem";
-		}else if( osName.contains( "solaris" ) || osName.contains( "sunos" ) ){
-		    className = "com.sun.security.auth.module.SolarisSystem";
-		}
 		
-		if(className != null) {
-			try {
-				Class<?> c = Class.forName( className );
-			    Method method = c.getDeclaredMethod( methodName );
-			    Object o = c.newInstance();
-			    String systemUserName = method.invoke( o ).toString();
-			    if(systemUserName.equals("Baris")) {
-			    	width = 1920;
-			    	height = 1080;
-			    }
-			}catch (Exception e) {}
-		}
-			
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screenSize.getWidth();
+		int height = (int)screenSize.getHeight();
 
 		try {
 			Display.setDisplayMode(new DisplayMode(width, height));
