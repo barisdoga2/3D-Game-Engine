@@ -17,7 +17,6 @@ uniform float atlasNumberOfRows;			// Texture Atlases
 uniform vec2 atlasOffsets;					// Texture Atlases
 uniform float densityOfFog;					// Fog
 uniform float gradientOfFog;				// Fog
-uniform vec4 clipPlane;
 
 out vec2 pass_textureCoords;
 out vec3 toLightVector[maxLightCount];		// Per-Pixel Lighting
@@ -28,7 +27,6 @@ out float visibility;						// Fog
 void main(){
 
 	vec4 worldPosition = transformationMatrix * vec4(position, 1.0);
-	gl_ClipDistance[0] = dot(worldPosition, clipPlane);
 	mat4 modelViewMatrix = viewMatrix * transformationMatrix;
 	vec4 positionRelativeToCamera = viewMatrix * worldPosition;
 	gl_Position = projectionMatrix * positionRelativeToCamera;

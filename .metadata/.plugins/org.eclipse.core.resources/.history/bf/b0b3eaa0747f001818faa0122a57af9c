@@ -37,6 +37,7 @@ public class NMEntityShader extends ShaderProgram{
 	private int location_minSpecularLighting;
 	private int location_modelTexture;
 	private int location_normalMapTexture;
+	private int location_clipPlane;
 
 	public NMEntityShader() {
 		super(vertexShaderFile, fragmentShaderFile);
@@ -72,6 +73,7 @@ public class NMEntityShader extends ShaderProgram{
 		this.location_minDiffuseLighting = super.getUniformLocation("minDiffuseLighting");
 		this.location_minSpecularLighting = super.getUniformLocation("minSpecularLighting");
 		this.location_modelTexture = super.getUniformLocation("modelTexture");
+		this.location_clipPlane = super.getUniformLocation("clipPlane");
 		this.location_normalMapTexture = super.getUniformLocation("normalMapTexture");
 		
 		this.location_lightPositionEyeSpace = new int[MAX_LIGHTS];
@@ -142,7 +144,11 @@ public class NMEntityShader extends ShaderProgram{
 		super.loadFloat(location_minDiffuseLighting, minDiffuseLighting);
 		super.loadFloat(location_minSpecularLighting, minSpecularLighting);
 	}
-
+	
+	public void loadClipPlane(Vector4f clipPane){
+		super.loadVector4f(location_clipPlane, clipPane);
+	}
+	
 	private Vector3f getEyeSpacePosition(Light light, Matrix4f viewMatrix){
 		Vector3f position = light.getPosition();
 		Vector4f eyeSpacePos = new Vector4f(position.x,position.y, position.z, 1f);

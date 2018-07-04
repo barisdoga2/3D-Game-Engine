@@ -17,6 +17,7 @@ uniform float atlasNumberOfRows;			// Texture Atlases
 uniform vec2 atlasOffsets;					// Texture Atlases
 uniform float densityOfFog;					// Fog
 uniform float gradientOfFog;				// Fog
+uniform vec4 clipPlane;
 
 out vec2 pass_textureCoords;
 out vec3 toLightVector[maxLightCount];		// Per-Pixel Lighting

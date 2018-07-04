@@ -8,6 +8,7 @@ import java.util.Map;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
 import dev.engine.entities.Camera;
 import dev.engine.entities.Entity;
@@ -89,6 +90,7 @@ public class MasterRenderer {
 		nmEntityShader.start();
 		nmEntityShader.loadLights(lights, camera);
 		nmEntityShader.loadViewMatrix(camera);
+		nmEntityShader.loadClipPlane(new Vector4f(0, -1, 0, 100000));
 		nmEntityRenderer.render(allNMEntities);
 		nmEntityShader.stop();
 		allNMEntities.clear();
