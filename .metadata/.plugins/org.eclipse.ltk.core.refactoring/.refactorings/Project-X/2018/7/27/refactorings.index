@@ -50,3 +50,10 @@
 1530614659274	Move file
 1530614662854	Rename resource 'lamp.png'
 1530622668718	Rename field 'MAX_PITCH'
+1530684374039	Rename field 'shader'
+1530684578393	Rename field 'SIZE'
+1530684769926	Rename method 'setToptSkybox'
+1530684774377	Rename local variable 'toptSkybox'
+1530684776393	Rename field 'toptSkybox'
+1530684779174	Rename method 'getToptSkybox'
+1530686074268	Move files

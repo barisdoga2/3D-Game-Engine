@@ -13,29 +13,24 @@ import dev.engine.models.RawModel;
 
 public class SkyboxRenderer {
 
-	private static final float SIZE = 500f;
-
-	private static String[] TEXTURE_FILES = { "right", "left", "top", "bottom", "back", "front" };
-
 	private RawModel cube;
-	
 	private int textureID;
-	private SkyboxShader shader;
+	private SkyboxShader skyboxShader;
 	
-	public SkyboxRenderer(Matrix4f projectionMatrix) {
-		cube = Loader.loadToVAO(VERTICES, 3);
-		textureID = ImageLoader.loadCubeMap(TEXTURE_FILES);
-		shader = new SkyboxShader();
+	public SkyboxRenderer(SkyboxShader skyboxShader, Matrix4f projectionMatrix, dev.engine.loaders.mapLoader.Map map) {
+		this.skyboxShader = skyboxShader;
+		this.textureID = ImageLoader.loadCubeMap(map.getSkyBox());
+		this.cube = Loader.loadToVAO(getVerticesArray(map.getSkyboxSize()), 3);
 		
-		shader.start();
-		shader.loadProjectionMatrix(projectionMatrix);
-		shader.stop();
+		skyboxShader.start();
+		skyboxShader.loadProjectionMatrix(projectionMatrix);
+		skyboxShader.stop();
 	}
 	
 	public void render(Camera camera) {
-		shader.start();
+		skyboxShader.start();
 		
-		shader.loadViewMatrix(camera);
+		skyboxShader.loadViewMatrix(camera);
 		
 		GL30.glBindVertexArray(cube.getVAOID());
 		GL20.glEnableVertexAttribArray(0);
@@ -47,25 +42,29 @@ public class SkyboxRenderer {
 		GL20.glDisableVertexAttribArray(0);
 		GL30.glBindVertexArray(0);
 		
-		shader.stop();
+		skyboxShader.stop();
 	}
 	
-	private static final float[] VERTICES = { -SIZE, SIZE, -SIZE, -SIZE, -SIZE, -SIZE, SIZE, -SIZE, -SIZE, SIZE, -SIZE,
-			-SIZE, SIZE, SIZE, -SIZE, -SIZE, SIZE, -SIZE,
+	private static float[] getVerticesArray(float size) {
+		return new float[] { 
+				-size, size, -size, -size, -size, -size, size, -size, -size, size, -size, -size, size, size, -size, -size,
+				size, -size,
 
-			-SIZE, -SIZE, SIZE, -SIZE, -SIZE, -SIZE, -SIZE, SIZE, -SIZE, -SIZE, SIZE, -SIZE, -SIZE, SIZE, SIZE, -SIZE,
-			-SIZE, SIZE,
+				-size, -size, size, -size, -size, -size, -size, size, -size, -size, size, -size, -size, size, size, -size,
+				-size, size,
 
-			SIZE, -SIZE, -SIZE, SIZE, -SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, -SIZE, SIZE, -SIZE,
-			-SIZE,
+				size, -size, -size, size, -size, size, size, size, size, size, size, size, size, size, -size, size, -size,
+				-size,
 
-			-SIZE, -SIZE, SIZE, -SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, -SIZE, SIZE, -SIZE, -SIZE,
-			SIZE,
+				-size, -size, size, -size, size, size, size, size, size, size, size, size, size, -size, size, -size, -size,
+				size,
 
-			-SIZE, SIZE, -SIZE, SIZE, SIZE, -SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, SIZE, -SIZE, SIZE, SIZE, -SIZE, SIZE,
-			-SIZE,
+				-size, size, -size, size, size, -size, size, size, size, size, size, size, -size, size, size, -size, size,
+				-size,
 
-			-SIZE, -SIZE, -SIZE, -SIZE, -SIZE, SIZE, SIZE, -SIZE, -SIZE, SIZE, -SIZE, -SIZE, -SIZE, -SIZE, SIZE, SIZE,
-			-SIZE, SIZE };
-
+				-size, -size, -size, -size, -size, size, size, -size, -size, size, -size, -size, -size, -size, size, size,
+				-size, size
+				};
+	}
+	
 }

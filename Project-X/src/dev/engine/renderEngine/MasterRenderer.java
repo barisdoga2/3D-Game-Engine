@@ -9,7 +9,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
-import dev.engine.EngineConfig;
 import dev.engine.entities.Camera;
 import dev.engine.entities.Entity;
 import dev.engine.entities.Light;
@@ -19,12 +18,14 @@ import dev.engine.renderEngine.entities.EntityShader;
 import dev.engine.renderEngine.terrains.TerrainRenderer;
 import dev.engine.renderEngine.terrains.TerrainShader;
 import dev.engine.skybox.SkyboxRenderer;
+import dev.engine.skybox.SkyboxShader;
 import dev.engine.terrains.Terrain;
 import dev.engine.utils.Maths;
 
 public class MasterRenderer {
 
 	private Matrix4f projectionMatrix;
+	private Vector3f skyColor;
 
 	private EntityShader entityShader;
 	private EntityRenderer entityRenderer;
@@ -34,26 +35,30 @@ public class MasterRenderer {
 	private TerrainRenderer terrainRenderer;
 	private List<Terrain> allTerrains = new ArrayList<Terrain>();
   
-	private Vector3f skyColor;
+	private SkyboxShader skyboxShader;
 	private SkyboxRenderer skyboxRenderer;
   
 	public MasterRenderer(dev.engine.loaders.mapLoader.Map map) {
 		MasterRenderer.EnableCulling();
 		this.projectionMatrix = Maths.createProjectionMatrix();
+		this.skyColor = map.getSkyColor();
 
 		this.entityShader = new EntityShader();
 		this.entityRenderer = new EntityRenderer(entityShader, projectionMatrix, map);
 
 		this.terrainShader = new TerrainShader();
 		this.terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix, map);
-		EngineConfig config = EngineConfig.getInstance();
-		skyColor = config.getVector3f("sky_color");
-		this.skyboxRenderer = new SkyboxRenderer(projectionMatrix);
+		
+		this.skyboxShader = new SkyboxShader();
+		this.skyboxRenderer = new SkyboxRenderer(skyboxShader, projectionMatrix, map);
 	}
 
 	public void render(List<Light> lights, Camera camera) {
 		prepare();
+		
+		// Rendering Skybox
 		skyboxRenderer.render(camera);
+		
 		// Rendering Terrains
 		terrainShader.start();
 		terrainShader.loadLights(lights);
@@ -63,6 +68,7 @@ public class MasterRenderer {
 
 		terrainShader.stop();
 		allTerrains.clear();
+		
 		// Rendering Entities
 		entityShader.start();
 		entityShader.loadLights(lights);

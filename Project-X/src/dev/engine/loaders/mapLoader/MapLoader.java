@@ -60,7 +60,15 @@ public class MapLoader {
 			String[] skyColorTokens = eElement.getElementsByTagName("skyColor").item(0).getTextContent().split(",");
 			String minDiffuseLighting = eElement.getElementsByTagName("minDiffuseLighting").item(0).getTextContent();
 			String minSpecularLighting = eElement.getElementsByTagName("minSpecularLighting").item(0).getTextContent();
-
+			
+			Float skyBoxSize = Float.parseFloat(eElement.getElementsByTagName("skyboxSize").item(0).getTextContent());
+			String skyboxRight = eElement.getElementsByTagName("skyboxRight").item(0).getTextContent();
+			String skyboxLeft = eElement.getElementsByTagName("skyboxLeft").item(0).getTextContent();
+			String skyboxTop = eElement.getElementsByTagName("skyboxTop").item(0).getTextContent();
+			String skyboxBottom = eElement.getElementsByTagName("skyboxBottom").item(0).getTextContent();
+			String skyboxBack = eElement.getElementsByTagName("skyboxBack").item(0).getTextContent();
+			String skyboxFront = eElement.getElementsByTagName("skyboxFront").item(0).getTextContent();
+			
 			map.setTilingFactor(Float.parseFloat(tilingFactor));
 			map.setFogDensity(Float.parseFloat(fogDensity));
 			map.setFogGradient(Float.parseFloat(fogGradient));
@@ -68,6 +76,10 @@ public class MapLoader {
 					Float.parseFloat(skyColorTokens[2])));
 			map.setMinDiffuseLighting(Float.parseFloat(minDiffuseLighting));
 			map.setMinSpecularLighting(Float.parseFloat(minSpecularLighting));
+			
+			map.setSkyboxSize(skyBoxSize);
+			map.setSkyBox(new String[] {skyboxRight, skyboxLeft, skyboxTop, skyboxBottom, skyboxBack, skyboxFront});
+			
 		}
 	}
 

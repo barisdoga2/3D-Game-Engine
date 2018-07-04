@@ -35,6 +35,7 @@ public class EngineTester {
 						new ModelTexture(ImageLoader.loadTexture("/models/textures/playerTexture"))),
 				new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
 		player.setCurrentTerrain(testTerrain);
+		player.setPosition(new Vector3f(829, 0, 497));
 
 		Camera testCamera = new Camera(player);
 
@@ -43,6 +44,7 @@ public class EngineTester {
 		MasterRenderer masterRenderer = new MasterRenderer(testMap);
 
 		while (!Display.isCloseRequested()) {
+			System.out.println(player.getPosition().x + " " + player.getPosition().y + " " + player.getPosition().z);
 			player.update();
 			testCamera.update();
 

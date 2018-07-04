@@ -95,10 +95,6 @@ public class EngineConfig {
 		return flag;
 	}
 
-	private boolean isExists(String key) {
-		return configuration.containsKey(key);
-	}
-
 	private void loadConfig(String path) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(path));
 

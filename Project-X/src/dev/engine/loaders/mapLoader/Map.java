@@ -22,6 +22,9 @@ public class Map {
 	private float minDiffuseLighting;
 	private float minSpecularLighting;
 
+	private float skyboxSize;
+	private String skyBox[];
+	
 	public Map() {
 		allEntities = new ArrayList<Entity>();
 		allTerrains = new ArrayList<Terrain>();
@@ -110,6 +113,22 @@ public class Map {
 
 	public void setMinSpecularLighting(float minSpecularLighting) {
 		this.minSpecularLighting = minSpecularLighting;
+	}
+	
+	public float getSkyboxSize() {
+		return skyboxSize;
+	}
+	
+	public void setSkyboxSize(float skyboxSize) {
+		this.skyboxSize = skyboxSize;
+	}
+
+	public String[] getSkyBox() {
+		return skyBox;
+	}
+
+	public void setSkyBox(String[] skyBox) {
+		this.skyBox = skyBox;
 	}
 
 }
