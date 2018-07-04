@@ -57,3 +57,27 @@
 1530684776393	Rename field 'toptSkybox'
 1530684779174	Rename method 'getToptSkybox'
 1530686074268	Move files
+1530690742977	Rename type 'NormalMappingShader'
+1530690752381	Rename type 'NormalMappingRenderer'
+1530690787084	Rename resource 'normalMapFShader.txt'
+1530690793628	Rename resource 'normalMappedEntityVertezShader.glsl'
+1530690805219	Rename resource 'normalMapVShader.txt'
+1530690812745	Rename type 'NormalMappedEntityRenderer'
+1530690819660	Rename type 'NormalMappedEntityShader'
+1530690824126	Rename type 'NPEntityRenderer'
+1530690831104	Rename resource 'normalMappedEntityFragmentShader.glsl'
+1530690836571	Rename resource 'normalMappedEntityVertexShader.glsl'
+1530691145351	Rename field 'shader'
+1530692686977	Rename resource 'nMEntityFragmentShader.glsl'
+1530692692358	Rename resource 'nMEntityVertexShader.glsl'
+1530692695779	Rename resource 'nMEntityVertex2Shader.glsl'
+1530693522665	Rename field 'location_plane'
+1530694184846	Move compilation units
+1530694881674	Move file
+1530694903612	Rename resource 'barrelNormal.png'
+1530694937475	Delete element
+1530694941771	Rename resource 'barrel.png'
+1530694955133	Rename resource 'boulder.png'
+1530694963123	Rename resource 'boulderNormal.png'
+1530694984394	Rename resource 'crate.png'
+1530694989955	Rename resource 'crateNormal.png'

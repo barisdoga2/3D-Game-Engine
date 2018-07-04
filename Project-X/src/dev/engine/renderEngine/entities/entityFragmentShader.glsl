@@ -8,7 +8,7 @@ in vec3 toLightVector[maxLightCount];		// Per-Pixel Lighting
 in vec3 toCameraVector;						// Specular Lighting
 in float visibility;						// Fog
 
-uniform sampler2D textureSampler;
+uniform sampler2D modelTexture;
 uniform vec3 lightColor[maxLightCount];		// Per-Pixel Lighting
 uniform vec3 lightAttenuation[maxLightCount];	// Point Lights
 uniform float shineDamper;					// Specular Lighting
@@ -43,12 +43,12 @@ void main(){
 	totalDiffuseLighting = max(totalDiffuseLighting, minDiffuseLighting);
 	totalSpecularLighting = max(totalSpecularLighting, minSpecularLighting);
 
-	vec4 textureColor = texture(textureSampler, pass_textureCoords);
+	vec4 textureColor = texture(modelTexture, pass_textureCoords);
 	if(textureColor.a < 0.5){
 		discard;
 	}
 	
-	out_Color = vec4(totalDiffuseLighting, 1.0) * texture(textureSampler, pass_textureCoords) + vec4(totalSpecularLighting, 1.0);
+	out_Color = vec4(totalDiffuseLighting, 1.0) * textureColor + vec4(totalSpecularLighting, 1.0);
 	out_Color = mix(vec4(skyColor, 1.0), out_Color, visibility);
 	
 }

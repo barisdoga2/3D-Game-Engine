@@ -16,6 +16,22 @@ public class SkyboxShader extends ShaderProgram {
 	public SkyboxShader() {
 		super(VERTEX_FILE, FRAGMENT_FILE);
 	}
+	
+	@Override
+	protected void connectTextureUnits() {
+		
+	}
+	
+	@Override
+	protected void bindAttributes() {
+		super.bindAttribute(0, "position");
+	}
+
+	@Override
+	protected void getAllUniformLocations() {
+		location_projectionMatrix = super.getUniformLocation("projectionMatrix");
+		location_viewMatrix = super.getUniformLocation("viewMatrix");
+	}
 
 	public void loadProjectionMatrix(Matrix4f matrix) {
 		super.loadMatrix4f(location_projectionMatrix, matrix);
@@ -31,16 +47,4 @@ public class SkyboxShader extends ShaderProgram {
 		super.loadMatrix4f(location_viewMatrix, matrix);
 	}
 
-	@Override
-	protected void bindAttributes() {
-		super.bindAttribute(0, "position");
-	}
-
-	@Override
-	protected void getAllUniformLocations() {
-		location_projectionMatrix = super.getUniformLocation("projectionMatrix");
-		location_viewMatrix = super.getUniformLocation("viewMatrix");
-	}
-	
-	
 }

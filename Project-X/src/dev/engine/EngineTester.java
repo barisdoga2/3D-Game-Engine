@@ -44,7 +44,6 @@ public class EngineTester {
 		MasterRenderer masterRenderer = new MasterRenderer(testMap);
 
 		while (!Display.isCloseRequested()) {
-			System.out.println(player.getPosition().x + " " + player.getPosition().y + " " + player.getPosition().z);
 			player.update();
 			testCamera.update();
 
@@ -52,7 +51,7 @@ public class EngineTester {
 			masterRenderer.processEntities(testMap.getAllEntities());
 			masterRenderer.processTerrains(testMap.getAllTerrains());
 
-			masterRenderer.render(testMap.getAllLights(), testCamera);
+			masterRenderer.render(testCamera, testMap.getAllLights());
 
 			DisplayManager.UpdateDisplay();
 		}

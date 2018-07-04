@@ -28,7 +28,6 @@ public class TerrainRenderer {
 		terrainShader.loadMinLightingVariables(map.getMinDiffuseLighting(), map.getMinSpecularLighting());
 		terrainShader.loadSkyColor(map.getSkyColor());
 
-		terrainShader.connectTextureUnits();
 		terrainShader.loadProjectionMatrix(projectionMatrix);
 		terrainShader.stop();
 	}

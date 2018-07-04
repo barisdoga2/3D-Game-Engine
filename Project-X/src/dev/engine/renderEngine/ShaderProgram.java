@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
 public abstract class ShaderProgram {
 
@@ -31,6 +32,10 @@ public abstract class ShaderProgram {
 		GL20.glLinkProgram(this.programID);
 		GL20.glValidateProgram(this.programID);
 		getAllUniformLocations();
+		
+		start();
+		connectTextureUnits();
+		stop();
 	}
 
 	public void start() {
@@ -49,7 +54,9 @@ public abstract class ShaderProgram {
 		GL20.glDeleteShader(this.fragmentShaderID);
 		GL20.glDeleteProgram(this.programID);
 	}
-
+	
+	protected abstract void connectTextureUnits();
+	
 	protected abstract void bindAttributes();
 
 	protected void bindAttribute(int attributeIndex, String variableName) {
@@ -86,6 +93,10 @@ public abstract class ShaderProgram {
 
 	protected void loadInt(int locationOfUniformVariable, int valueToLoad) {
 		GL20.glUniform1i(locationOfUniformVariable, valueToLoad);
+	}
+	
+	protected void loadVector4f(int locationOfUniformVariable, Vector4f vector4fToLoad) {
+		GL20.glUniform4f(locationOfUniformVariable, vector4fToLoad.x, vector4fToLoad.y, vector4fToLoad.z, vector4fToLoad.w);
 	}
 
 	private static int loadShader(String file, int type) {
