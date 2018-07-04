@@ -22,7 +22,7 @@ public class Player extends Entity {
 		mSpeed = config.getFloat("player_run_speed");
 		mTurnSpeed = config.getFloat("player_turn_speed");
 	}
-
+  
 	@Override
 	public void update() {
 		move();
@@ -43,11 +43,11 @@ public class Player extends Entity {
 	}
 
 	private void checkInputs() {
-		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.currentSpeed = mSpeed;
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.currentSpeed = -mSpeed;
-		} else {
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
+			this.currentSpeed = EngineConfig.PLAYER_RUN_SPEED;
+		}else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
+			this.currentSpeed = -EngineConfig.PLAYER_RUN_SPEED;
+		}else {
 			this.currentSpeed = 0;
 		}
 
@@ -58,6 +58,7 @@ public class Player extends Entity {
 		} else {
 			this.currentTurnSpeed = 0;
 		}
+		
 	}
 
 }

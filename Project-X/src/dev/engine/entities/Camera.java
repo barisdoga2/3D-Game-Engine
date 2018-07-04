@@ -5,12 +5,18 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Camera {
 
+	private static final int MAX_ZOOM_IN_DISTANCE = 75;
+	private static final int MAX_ZOOM_OUT_DISTANCE = 200;
+	
+	private static final int MAX_PITCH_DEGREES = 80;
+	private static final int MIN_PITCH_DEGREES = 10;
+	
 	private Vector3f position = new Vector3f(0, 0, 0);
 	private float pitch = 27.5f;
 	private float yaw;
 	private float roll;
-
-	private float distanceFromPlayer = 125;
+  
+	private float distanceFromPlayer = 200;
 	private float angleAroundPlayer = 0;
 	private Player player;
 
@@ -38,7 +44,7 @@ public class Camera {
 		float zOffset = (float) (horizontalDistance * Math.cos(Math.toRadians(theta)));
 		position.x = player.getPosition().x - xOffset;
 		position.z = player.getPosition().z - zOffset;
-		position.y = player.getPosition().y + verticalDistance;
+		position.y = player.getPosition().y + verticalDistance + 5; // TODO - +5 is used to move cameras y to center of player. Fix this with dynamic variable later.
 	}
 
 	private float calculateHorizontalDistance() {
@@ -52,6 +58,11 @@ public class Camera {
 	private void calculateZoom() {
 		float zoomLevel = Mouse.getDWheel() * 0.1f;
 		distanceFromPlayer -= zoomLevel;
+		
+		if(distanceFromPlayer < MAX_ZOOM_IN_DISTANCE)
+			distanceFromPlayer = MAX_ZOOM_IN_DISTANCE;
+		else if(distanceFromPlayer > MAX_ZOOM_OUT_DISTANCE)
+			distanceFromPlayer = MAX_ZOOM_OUT_DISTANCE;
 	}
 
 	private void calculatePitch() {
@@ -61,12 +72,17 @@ public class Camera {
 			float pitchChange = Mouse.getDY() * 0.1f;
 			pitch -= pitchChange;
 		}
+		
+		if(pitch < MIN_PITCH_DEGREES)
+			pitch = MIN_PITCH_DEGREES;
+		else if(pitch > MAX_PITCH_DEGREES)
+			pitch = MAX_PITCH_DEGREES;
 	}
 
 	private void calculateAngleAroundPlayer() {
 		// 0 is Left Button
 		// 1 is Right Button
-		if (Mouse.isButtonDown(0)) {
+		if(Mouse.isButtonDown(1)) {
 			float angleChange = Mouse.getDX() * 0.3f;
 			angleAroundPlayer -= angleChange;
 		}
@@ -102,6 +118,14 @@ public class Camera {
 
 	public void setRoll(float roll) {
 		this.roll = roll;
+	}
+
+	public float getAngleAroundPlayer() {
+		return angleAroundPlayer;
+	}
+
+	public void setAngleAroundPlayer(float angleAroundPlayer) {
+		this.angleAroundPlayer = angleAroundPlayer;
 	}
 
 }

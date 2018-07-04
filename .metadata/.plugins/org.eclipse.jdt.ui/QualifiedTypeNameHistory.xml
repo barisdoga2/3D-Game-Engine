@@ -20,4 +20,7 @@
 <fullyQualifiedTypeName name="dev.engine.loaders.mapLoader.MapLoader.MapSettings"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.lwjgl.util.vector.Vector3f"/>
+<fullyQualifiedTypeName name="org.lwjgl.input.Mouse"/>
+<fullyQualifiedTypeName name="dev.engine.EngineConfig"/>
+<fullyQualifiedTypeName name="org.lwjgl.Sys"/>
 </qualifiedTypeNameHistroy>
