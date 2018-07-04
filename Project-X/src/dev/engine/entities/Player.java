@@ -4,8 +4,10 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
 import dev.engine.EngineConfig;
+import dev.engine.loaders.mapLoader.Map;
 import dev.engine.models.TexturedModel;
 import dev.engine.renderEngine.DisplayManager;
+import dev.engine.terrains.Terrain;
 
 public class Player extends Entity {
 
@@ -15,12 +17,13 @@ public class Player extends Entity {
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
 
-	public Player(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale) {
+	public Player(String name, TexturedModel model, Vector3f position, Vector3f rotation, Vector3f scale, Map currentMap) {
 		super(name, model, position, rotation, scale);
 
 		EngineConfig config = EngineConfig.getInstance();
-		mSpeed = config.getFloat("player_run_speed");
-		mTurnSpeed = config.getFloat("player_turn_speed");
+		this.mSpeed = config.getFloat("player_run_speed");
+		this.mTurnSpeed = config.getFloat("player_turn_speed");
+		this.currentMap = currentMap;
 	}
   
 	@Override
@@ -37,9 +40,17 @@ public class Player extends Entity {
 		float dx = (float) (distance * Math.sin(Math.toRadians(getRotation().y)));
 		float dz = (float) (distance * Math.cos(Math.toRadians(getRotation().y)));
 		super.increasePosition(dx, 0, dz);
+		
+		Terrain currentTerrain = null;
+		
+		for(Terrain terrain : currentMap.getAllTerrains()) 
+			if(terrain.getX() / Terrain.SIZE == Math.ceil(getPosition().x / Terrain.SIZE) - 1 && terrain.getZ() / Terrain.SIZE == Math.ceil(getPosition().z / Terrain.SIZE) - 1) {
+				currentTerrain = terrain;
+				break;
+			}
 
-		if (this.getCurrentTerrain() != null)
-			super.getPosition().y = this.getCurrentTerrain().getHeight(getPosition().x, getPosition().z);
+		if (currentTerrain != null)
+			super.getPosition().y = currentTerrain.getHeight(getPosition().x, getPosition().z);
 	}
 
 	private void checkInputs() {

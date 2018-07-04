@@ -2,13 +2,13 @@ package dev.engine.entities;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import dev.engine.loaders.mapLoader.Map;
 import dev.engine.models.TexturedModel;
-import dev.engine.terrains.Terrain;
 
 public class Entity {
 
 	private String name;
-	private Terrain currentTerrain;
+	protected Map currentMap;
 
 	private TexturedModel model;
 
@@ -114,14 +114,6 @@ public class Entity {
 
 	public void setScale(Vector3f scale) {
 		this.scale = scale;
-	}
-
-	public Terrain getCurrentTerrain() {
-		return currentTerrain;
-	}
-
-	public void setCurrentTerrain(Terrain currentTerrain) {
-		this.currentTerrain = currentTerrain;
 	}
 
 	public String getName() {

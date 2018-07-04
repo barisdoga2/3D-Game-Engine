@@ -35,8 +35,7 @@ public class EngineTester {
 		Player player = new Player("Player",
 				new TexturedModel(OBJLoader.LoadObjModel("/models/objs/player"),
 						new ModelTexture(ImageLoader.loadTexture("/models/textures/playerTexture"))),
-				new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
-		player.setCurrentTerrain(testTerrain);
+				new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), testMap);
 		player.setPosition(new Vector3f(829, 0, 497));
 
 		Camera testCamera = new Camera(player);
@@ -50,7 +49,8 @@ public class EngineTester {
 			testCamera.update();
 			mousePicker.update();
 			Vector3f vec = mousePicker.getCurrentTerrainPoint();
-			System.out.println(vec.x + " " + vec.y + " " + vec.z);
+			if(vec != null)
+				System.out.println(vec.x + " " + vec.y + " " + vec.z);
 
 			
 			masterRenderer.processEntity(player);
