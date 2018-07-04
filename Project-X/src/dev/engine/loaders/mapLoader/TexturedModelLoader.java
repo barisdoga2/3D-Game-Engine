@@ -19,45 +19,50 @@ import dev.engine.models.TexturedModel;
 
 public class TexturedModelLoader {
 
-private static final String XML_PATH = "res/xml/texturedModels.xml";
-	
-	protected static List<TexturedModel> loadAll(){
+	private static final String XML_PATH = "res/xml/texturedModels.xml";
+
+	protected static List<TexturedModel> loadAll() {
 		List<TexturedModel> all = new ArrayList<TexturedModel>();
-		try{
+		try {
 			File fXmlFile = new File(XML_PATH);
-			
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			
+
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
-			
-			doc.getDocumentElement().normalize();			
+
+			doc.getDocumentElement().normalize();
 			NodeList nList = doc.getElementsByTagName("texturedModel");
-			
+
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
-					
+
 					String name = eElement.getAttribute("name");
-					
-					ModelTexture modelTexture = GameStructs.getModelTexture(eElement.getElementsByTagName("modelTexture").item(0).getTextContent());
-					//ModelTexture diffuseTexture = GameStructs.getModelTexture(eElement.getElementsByTagName("diffuseTexture").item(0).getTextContent());
-					//ModelTexture specularTexture = GameStructs.getModelTexture(eElement.getElementsByTagName("specularTexture").item(0).getTextContent());
-					//ModelTexture normalTexture = GameStructs.getModelTexture(eElement.getElementsByTagName("normalTexture").item(0).getTextContent());
-					
-					RawModel rawModel =  OBJLoader.LoadObjModel(eElement.getElementsByTagName("rawModel").item(0).getTextContent());
-					
+
+					ModelTexture modelTexture = GameStructs
+							.getModelTexture(eElement.getElementsByTagName("modelTexture").item(0).getTextContent());
+					// ModelTexture diffuseTexture =
+					// GameStructs.getModelTexture(eElement.getElementsByTagName("diffuseTexture").item(0).getTextContent());
+					// ModelTexture specularTexture =
+					// GameStructs.getModelTexture(eElement.getElementsByTagName("specularTexture").item(0).getTextContent());
+					// ModelTexture normalTexture =
+					// GameStructs.getModelTexture(eElement.getElementsByTagName("normalTexture").item(0).getTextContent());
+
+					RawModel rawModel = OBJLoader
+							.LoadObjModel(eElement.getElementsByTagName("rawModel").item(0).getTextContent());
+
 					all.add(new TexturedModel(name, rawModel, modelTexture));
-					
+
 				}
 			}
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return all;
 	}
-	
+
 }

@@ -10,13 +10,13 @@ import dev.engine.entities.Light;
 import dev.engine.renderEngine.ShaderProgram;
 import dev.engine.utils.Maths;
 
-public class TerrainShader extends ShaderProgram{
-	
+public class TerrainShader extends ShaderProgram {
+
 	private static final String vertexShaderFile = "src/dev/engine/renderEngine/terrains/terrainVertexShader.glsl";
 	private static final String fragmentShaderFile = "src/dev/engine/renderEngine/terrains/terrainFragmentShader.glsl";
-	
+
 	private static final int MAX_LIGHTS = 4;
-	
+
 	private int location_transformationMatrix;
 	private int location_projectionMatrix;
 	private int location_viewMatrix;
@@ -37,7 +37,7 @@ public class TerrainShader extends ShaderProgram{
 	private int location_tilingFactor;
 	private int location_minDiffuseLighting;
 	private int location_minSpecularLighting;
-	
+
 	public TerrainShader() {
 		super(vertexShaderFile, fragmentShaderFile);
 	}
@@ -68,53 +68,53 @@ public class TerrainShader extends ShaderProgram{
 		this.location_tilingFactor = super.getUniformLocation("tilingFactor");
 		this.location_minDiffuseLighting = super.getUniformLocation("minDiffuseLighting");
 		this.location_minSpecularLighting = super.getUniformLocation("minSpecularLighting");
-		
+
 		this.location_lightPosition = new int[MAX_LIGHTS];
 		this.location_lightColor = new int[MAX_LIGHTS];
 		this.location_lightAttenuation = new int[MAX_LIGHTS];
-		for(int i = 0 ; i < MAX_LIGHTS ; i++) {
+		for (int i = 0; i < MAX_LIGHTS; i++) {
 			this.location_lightPosition[i] = super.getUniformLocation("lightPosition[" + i + "]");
 			this.location_lightColor[i] = super.getUniformLocation("lightColor[" + i + "]");
 			this.location_lightAttenuation[i] = super.getUniformLocation("lightAttenuation[" + i + "]");
 		}
 	}
-	
+
 	public void loadTransformationMatrix(Matrix4f transformationMatrix) {
 		super.loadMatrix4f(this.location_transformationMatrix, transformationMatrix);
 	}
-	
+
 	public void loadProjectionMatrix(Matrix4f projectionMatrix) {
 		super.loadMatrix4f(this.location_projectionMatrix, projectionMatrix);
 	}
-	
+
 	public void loadViewMatrix(Camera camera) {
 		Matrix4f viewMatrix = Maths.createViewMatrix(camera);
 		super.loadMatrix4f(this.location_viewMatrix, viewMatrix);
 	}
-	
+
 	public void loadLights(List<Light> lights) {
-		for(int i = 0 ; i < MAX_LIGHTS ; i++) {
-			if(i < lights.size()) {
+		for (int i = 0; i < MAX_LIGHTS; i++) {
+			if (i < lights.size()) {
 				super.loadVector3f(location_lightPosition[i], lights.get(i).getPosition());
 				super.loadVector3f(location_lightColor[i], lights.get(i).getColor());
 				super.loadVector3f(location_lightAttenuation[i], lights.get(i).getAttenuation());
-			}else {
+			} else {
 				super.loadVector3f(location_lightPosition[i], new Vector3f(0, 0, 0));
 				super.loadVector3f(location_lightColor[i], new Vector3f(0, 0, 0));
 				super.loadVector3f(location_lightAttenuation[i], new Vector3f(1, 0, 0));
 			}
 		}
 	}
-	
+
 	public void loadShineValues(float shineDamper, float reflectivity) {
 		super.loadFloat(location_shineDamper, shineDamper);
 		super.loadFloat(location_reflectivity, reflectivity);
 	}
-	
+
 	public void loadSkyColor(Vector3f skyColor) {
 		super.loadVector3f(location_skyColor, skyColor);
 	}
-	
+
 	public void connectTextureUnits() {
 		super.loadInt(location_backgroundTexture, 0);
 		super.loadInt(location_rTexture, 1);
@@ -123,19 +123,19 @@ public class TerrainShader extends ShaderProgram{
 		super.loadInt(location_aTexture, 4);
 		super.loadInt(location_blendMapTexture, 5);
 	}
-	
+
 	public void loadFogVariables(float densityOfFog, float gradientOfFog) {
 		super.loadFloat(location_densityOfFog, densityOfFog);
 		super.loadFloat(location_gradientOfFog, gradientOfFog);
 	}
-	
+
 	public void loadTilingFactor(float tilingFactor) {
 		super.loadFloat(location_tilingFactor, tilingFactor);
 	}
-	
+
 	public void loadMinLightingVariables(float minDiffuseLighting, float minSpecularLighting) {
 		super.loadFloat(location_minDiffuseLighting, minDiffuseLighting);
 		super.loadFloat(location_minSpecularLighting, minSpecularLighting);
 	}
-	
+
 }

@@ -4,7 +4,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
 public class Camera {
-	
+
 	private static final int MAX_ZOOM_IN_DISTANCE = 75;
 	private static final int MAX_ZOOM_OUT_DISTANCE = 200;
 	
@@ -15,19 +15,19 @@ public class Camera {
 	private float pitch = 27.5f;
 	private float yaw;
 	private float roll;
-	
+  
 	private float distanceFromPlayer = 200;
 	private float angleAroundPlayer = 0;
 	private Player player;
-	
-	public Camera(Player player){
+
+	public Camera(Player player) {
 		this.player = player;
 	}
-	
+
 	public void update() {
 		move();
 	}
-	
+
 	private void move() {
 		calculateZoom();
 		calculatePitch();
@@ -37,7 +37,7 @@ public class Camera {
 		calculateCameraPosition(horizontalDistance, verticalDistance);
 		this.yaw = 180 - (player.getRotation().y + angleAroundPlayer);
 	}
-	
+
 	private void calculateCameraPosition(float horizontalDistance, float verticalDistance) {
 		float theta = player.getRotation().y + angleAroundPlayer;
 		float xOffset = (float) (horizontalDistance * Math.sin(Math.toRadians(theta)));
@@ -46,15 +46,15 @@ public class Camera {
 		position.z = player.getPosition().z - zOffset;
 		position.y = player.getPosition().y + verticalDistance + 5; // TODO - +5 is used to move cameras y to center of player. Fix this with dynamic variable later.
 	}
-	
+
 	private float calculateHorizontalDistance() {
 		return (float) (distanceFromPlayer * Math.cos(Math.toRadians(pitch)));
 	}
-	
+
 	private float calculateVerticalDistance() {
 		return (float) (distanceFromPlayer * Math.sin(Math.toRadians(pitch)));
 	}
-	
+
 	private void calculateZoom() {
 		float zoomLevel = Mouse.getDWheel() * 0.1f;
 		distanceFromPlayer -= zoomLevel;
@@ -64,11 +64,11 @@ public class Camera {
 		else if(distanceFromPlayer > MAX_ZOOM_OUT_DISTANCE)
 			distanceFromPlayer = MAX_ZOOM_OUT_DISTANCE;
 	}
-	
+
 	private void calculatePitch() {
 		// 0 is Left Button
 		// 1 is Right Button
-		if(Mouse.isButtonDown(1)) {
+		if (Mouse.isButtonDown(1)) {
 			float pitchChange = Mouse.getDY() * 0.1f;
 			pitch -= pitchChange;
 		}
@@ -78,7 +78,7 @@ public class Camera {
 		else if(pitch > MAX_PITCH_DEGREES)
 			pitch = MAX_PITCH_DEGREES;
 	}
-	
+
 	private void calculateAngleAroundPlayer() {
 		// 0 is Left Button
 		// 1 is Right Button

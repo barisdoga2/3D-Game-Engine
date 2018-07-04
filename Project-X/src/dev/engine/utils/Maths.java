@@ -6,6 +6,7 @@ import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import dev.engine.EngineConfig;
+import dev.engine.entities.Camera;
 
 
 public class Maths {
@@ -23,7 +24,7 @@ public class Maths {
 		return matrix;
 	}
 	
-	public static Matrix4f createViewMatrix(dev.engine.entities.Camera camera) {
+	public static Matrix4f createViewMatrix(Camera camera) {
 		Matrix4f viewMatrix = new Matrix4f();
 		viewMatrix.setIdentity();
 		
@@ -38,17 +39,23 @@ public class Maths {
 	}
 	
 	public static Matrix4f createProjectionMatrix(){
+		EngineConfig config = EngineConfig.getInstance();
+		
+		int FOV = config.getInt("fov");
+		float farPlane = config.getFloat("far_plane");
+		float nearPlane = config.getFloat("near_plane");
+		
 		float aspectRatio = (float) Display.getWidth() / (float) Display.getHeight();
-		float y_scale = (float) ((1f / Math.tan(Math.toRadians(EngineConfig.FOV / 2f))) * aspectRatio);
+		float y_scale = (float) ((1f / Math.tan(Math.toRadians(FOV / 2f))) * aspectRatio);
 		float x_scale = y_scale / aspectRatio;
-		float frustum_length = EngineConfig.FAR_PLANE - EngineConfig.NEAR_PLANE;
+		float frustum_length = farPlane - nearPlane;
 
 		Matrix4f projectionMatrix = new Matrix4f();
 		projectionMatrix.m00 = x_scale;
 		projectionMatrix.m11 = y_scale;
-		projectionMatrix.m22 = -((EngineConfig.FAR_PLANE + EngineConfig.NEAR_PLANE) / frustum_length);
+		projectionMatrix.m22 = -((farPlane + nearPlane) / frustum_length);
 		projectionMatrix.m23 = -1;
-		projectionMatrix.m32 = -((2 * EngineConfig.NEAR_PLANE * EngineConfig.FAR_PLANE) / frustum_length);
+		projectionMatrix.m32 = -((2 * nearPlane * farPlane) / frustum_length);
 		projectionMatrix.m33 = 0;
 		
 		return projectionMatrix;
