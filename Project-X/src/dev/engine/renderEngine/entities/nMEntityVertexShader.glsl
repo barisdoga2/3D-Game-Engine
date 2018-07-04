@@ -37,24 +37,24 @@ void main(){
 	if(useFakeLighting > 0.5)
 		actualNormal = vec3(0.0, 1.0, 0.0);
 
-	vec3 surfaceNormal = (modelViewMatrix * vec4(normal,0.0)).xyz;									// Per-Pixel Lighting
-	vec3 norm = normalize(surfaceNormal);
-	vec3 tangent = normalize((modelViewMatrix * vec4(tangent, 0.0)).xyz);
-	vec3 bitang = normalize(cross(norm, tangent));
-	mat3 toTangentSpace = mat3(
-			tangent.x,		bitang.x,	norm.x,
-			tangent.y,		bitang.y,	norm.y,
-			tangent.z,		bitang.z,	norm.z
+	vec3 surfaceNormal = (modelViewMatrix * vec4(normal,0.0)).xyz;													// Per-Pixel Lighting
+	vec3 norm = normalize(surfaceNormal);																			// Normal Mapping
+	vec3 tangent = normalize((modelViewMatrix * vec4(tangent, 0.0)).xyz);											// Normal Mapping
+	vec3 bitang = normalize(cross(norm, tangent));																	// Normal Mapping
+	mat3 toTangentSpace = mat3(																						// Normal Mapping
+			tangent.x,		bitang.x,	norm.x,																		// Normal Mapping
+			tangent.y,		bitang.y,	norm.y,																		// Normal Mapping
+			tangent.z,		bitang.z,	norm.z																		// Normal Mapping
 	);
 
-	for(int i = 0 ; i < maxLightCount ; i++){
+	for(int i = 0 ; i < maxLightCount ; i++){																		// Per-Pixel Lighting
 		toLightVector[i] = toTangentSpace * (lightPositionEyeSpace[i] - positionRelativeToCamera.xyz);				// Per-Pixel Lighting
-	}
+	}																												// Per-Pixel Lighting
 
 	toCameraVector = toTangentSpace * (-positionRelativeToCamera.xyz);												// Specular Lighting
 
-	float distanceFromCamera = length(positionRelativeToCamera.xyz);							// Fog
-	visibility = exp(-pow((distanceFromCamera * densityOfFog), gradientOfFog));					// Fog
-	visibility = clamp(visibility, 0.0, 1.0);													// Fog
+	float distanceFromCamera = length(positionRelativeToCamera.xyz);												// Fog
+	visibility = exp(-pow((distanceFromCamera * densityOfFog), gradientOfFog));										// Fog
+	visibility = clamp(visibility, 0.0, 1.0);																		// Fog
 
 }

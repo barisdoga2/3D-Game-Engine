@@ -9,6 +9,8 @@ in vec3 toCameraVector;						// Specular Lighting
 in float visibility;						// Fog
 
 uniform sampler2D modelTexture;
+uniform sampler2D specularTexture;			// Specular Mapping
+uniform float useSpecularMapping;			// Specular Mapping
 uniform vec3 lightColor[maxLightCount];		// Per-Pixel Lighting
 uniform vec3 lightAttenuation[maxLightCount];	// Point Lights
 uniform float shineDamper;					// Specular Lighting
@@ -48,6 +50,14 @@ void main(){
 		discard;
 	}
 	
+	if(useSpecularMapping > 0.5){
+		vec4 specularMapColor = texture(specularTexture, pass_textureCoords);
+		totalSpecularLighting *= specularMapColor.r;
+		if(specularMapColor.g > 0.5){
+			totalDiffuseLighting = vec3(1.0, 1.0, 1.0);
+		}
+	}
+
 	out_Color = vec4(totalDiffuseLighting, 1.0) * textureColor + vec4(totalSpecularLighting, 1.0);
 	out_Color = mix(vec4(skyColor, 1.0), out_Color, visibility);
 	

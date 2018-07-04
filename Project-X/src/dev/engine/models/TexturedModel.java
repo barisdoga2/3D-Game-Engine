@@ -1,17 +1,23 @@
 package dev.engine.models;
 
+import dev.engine.textures.ModelTexture;
+import dev.engine.textures.NormalTexture;
+import dev.engine.textures.SpecularTexture;
+
 public class TexturedModel {
 	
 	private String name;
 	private RawModel rawModel;
 	private ModelTexture modelTexture;
-	private ModelTexture normalMappingTexture;
+	private NormalTexture normalMappingTexture;
+	private SpecularTexture specularMappingTexture;
 	
-	public TexturedModel(String name, RawModel rawModel, ModelTexture modelTexture, ModelTexture normalMappingTexture) {
+	public TexturedModel(String name, RawModel rawModel, ModelTexture modelTexture, NormalTexture normalMappingTexture, SpecularTexture specularMappingTexture) {
 		this.name = name;
 		this.rawModel = rawModel;
 		this.modelTexture = modelTexture;
 		this.normalMappingTexture = normalMappingTexture;
+		this.specularMappingTexture = specularMappingTexture;
 	}
 	
 	public TexturedModel(RawModel rawModel, ModelTexture modelTexture) {
@@ -31,8 +37,12 @@ public class TexturedModel {
 		return name;
 	}
 
-	public ModelTexture getNormalMappingTexture() {
+	public NormalTexture getNormalMappingTexture() {
 		return normalMappingTexture;
+	}
+	
+	public SpecularTexture getSpecularMappingTexture() {
+		return specularMappingTexture;
 	}
 	
 }

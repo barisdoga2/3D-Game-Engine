@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import dev.engine.loaders.ImageLoader;
-import dev.engine.models.ModelTexture;
+import dev.engine.textures.ModelTexture;
 
 public class ModelTextureLoader {
 

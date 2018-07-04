@@ -10,10 +10,10 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Matrix4f;
 
 import dev.engine.entities.Entity;
-import dev.engine.models.ModelTexture;
 import dev.engine.models.RawModel;
 import dev.engine.models.TexturedModel;
 import dev.engine.renderEngine.MasterRenderer;
+import dev.engine.textures.ModelTexture;
 import dev.engine.utils.Maths;
 
 public class NMEntityRenderer {
@@ -44,24 +44,32 @@ public class NMEntityRenderer {
 		}
 	}
 
-	private void prepareTexturedModel(TexturedModel model) {
-		RawModel rawModel = model.getRawModel();
+	private void prepareTexturedModel(TexturedModel texturedModel) {
+		RawModel rawModel = texturedModel.getRawModel();
 		GL30.glBindVertexArray(rawModel.getVAOID());
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
 		GL20.glEnableVertexAttribArray(2);
 		GL20.glEnableVertexAttribArray(3);
-		ModelTexture texture = model.getModelTexture();
+		ModelTexture texture = texturedModel.getModelTexture();
 		nmEntityShader.loadAtlasNumberOfRows(texture.getAtlasNumberOfRows());
 		if (texture.isHasTransparency())
 			MasterRenderer.DisableCulling();
 		nmEntityShader.loadShineValues(texture.getShineDamper(), texture.getReflectivity());
 		
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, model.getModelTexture().getTextureID());
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getModelTexture().getTextureID());
 		
 		GL13.glActiveTexture(GL13.GL_TEXTURE1);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, model.getNormalMappingTexture().getTextureID());
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getNormalMappingTexture().getTextureID());
+		
+		if(texturedModel.getSpecularMappingTexture() != null) {
+			GL13.glActiveTexture(GL13.GL_TEXTURE2);
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getSpecularMappingTexture().getTextureID());
+			nmEntityShader.loadUseSpecularMapping(true);
+		}else {
+			nmEntityShader.loadUseSpecularMapping(false);
+		}
 	}
 
 	private void unbindTexturedModel() {

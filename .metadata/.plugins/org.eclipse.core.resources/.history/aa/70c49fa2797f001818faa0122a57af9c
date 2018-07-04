@@ -1,0 +1,5 @@
+package dev.engine.models;
+
+public class SpecularTexture {
+
+}

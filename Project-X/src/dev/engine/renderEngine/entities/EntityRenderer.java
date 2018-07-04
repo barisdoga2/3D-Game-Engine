@@ -10,10 +10,10 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Matrix4f;
 
 import dev.engine.entities.Entity;
-import dev.engine.models.ModelTexture;
 import dev.engine.models.RawModel;
 import dev.engine.models.TexturedModel;
 import dev.engine.renderEngine.MasterRenderer;
+import dev.engine.textures.ModelTexture;
 import dev.engine.utils.Maths;
 
 public class EntityRenderer {
@@ -62,6 +62,14 @@ public class EntityRenderer {
 
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, modelTexture.getTextureID());
+		
+		if(texturedModel.getSpecularMappingTexture() != null) {
+			GL13.glActiveTexture(GL13.GL_TEXTURE1);
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getSpecularMappingTexture().getTextureID());
+			entityShader.loadUseSpecularMapping(true);
+		}else {
+			entityShader.loadUseSpecularMapping(false);
+		}
 	}
 
 	private void prepareEntity(Entity entity) {

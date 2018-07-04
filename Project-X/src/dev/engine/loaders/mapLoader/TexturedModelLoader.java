@@ -12,10 +12,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import dev.engine.models.ModelTexture;
-import dev.engine.models.OBJLoader;
+import dev.engine.loaders.objLoader.OBJLoader;
 import dev.engine.models.RawModel;
 import dev.engine.models.TexturedModel;
+import dev.engine.textures.ModelTexture;
+import dev.engine.textures.NormalTexture;
+import dev.engine.textures.SpecularTexture;
 
 public class TexturedModelLoader {
 
@@ -44,8 +46,8 @@ public class TexturedModelLoader {
 					ModelTexture modelTexture = GameStructs
 							.getModelTexture(eElement.getElementsByTagName("modelTexture").item(0).getTextContent());
 					// ModelTexture diffuseTexture = GameStructs.getModelTexture(eElement.getElementsByTagName("diffuseTexture").item(0).getTextContent());
-					// ModelTexture specularTexture = GameStructs.getModelTexture(eElement.getElementsByTagName("specularTexture").item(0).getTextContent());
-					ModelTexture normalTexture = GameStructs.getModelTexture(eElement.getElementsByTagName("normalTexture").item(0).getTextContent());
+					SpecularTexture specularTexture = GameStructs.getSpecularTexture(eElement.getElementsByTagName("specularTexture").item(0).getTextContent());
+					NormalTexture normalTexture = GameStructs.getNormalTexture(eElement.getElementsByTagName("normalTexture").item(0).getTextContent());
 					
 					RawModel rawModel = null;
 					if(normalTexture == null) {
@@ -57,7 +59,7 @@ public class TexturedModelLoader {
 					}
 					
 
-					all.add(new TexturedModel(name, rawModel, modelTexture, normalTexture));
+					all.add(new TexturedModel(name, rawModel, modelTexture, normalTexture, specularTexture));
 
 				}
 			}

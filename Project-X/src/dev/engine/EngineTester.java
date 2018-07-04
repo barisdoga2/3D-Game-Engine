@@ -9,12 +9,12 @@ import dev.engine.loaders.ImageLoader;
 import dev.engine.loaders.Loader;
 import dev.engine.loaders.mapLoader.GameStructs;
 import dev.engine.loaders.mapLoader.Map;
-import dev.engine.models.ModelTexture;
-import dev.engine.models.OBJLoader;
+import dev.engine.loaders.objLoader.OBJLoader;
 import dev.engine.models.TexturedModel;
 import dev.engine.renderEngine.DisplayManager;
 import dev.engine.renderEngine.MasterRenderer;
 import dev.engine.terrains.Terrain;
+import dev.engine.textures.ModelTexture;
 
 public class EngineTester {
 
@@ -44,6 +44,7 @@ public class EngineTester {
 		MasterRenderer masterRenderer = new MasterRenderer(testMap);
 
 		while (!Display.isCloseRequested()) {
+			System.out.println(player.getPosition().x + " " + player.getPosition().y + " " + player.getPosition().z);
 			player.update();
 			testCamera.update();
 
