@@ -1,4 +1,4 @@
-package dev.engine.skybox;
+package dev.engine.renderEngine.skybox;
 
 import org.lwjgl.util.vector.Matrix4f;
 
