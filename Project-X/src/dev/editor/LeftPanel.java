@@ -16,7 +16,7 @@ public class LeftPanel extends JPanel{
 	
 	public double scale = 1;
 
-	public LeftPanel(EditorRun editor) {
+	public LeftPanel(MapEditor editor) {
 		this.setBackground(new Color(61, 61, 61));
 		
 		canvas = new Canvas();
@@ -24,7 +24,10 @@ public class LeftPanel extends JPanel{
 		canvas.setSize((int)(editor.getScreenWidth() / 1.4), editor.getScreenHeight());
 		add(canvas);
 		
-		
+	}
+	
+	public Canvas getCanvas() {
+		return canvas;
 	}
 	
 }

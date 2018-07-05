@@ -19,7 +19,7 @@ public class DisplayManager {
 	private static int fpsCap;
 	private static long lasftFrameTime;
 	private static float deltaTimeSeconds;
-
+	
 	public static void CreateDisplay() {
 		ContextAttribs attribs = new ContextAttribs(3, 2).withForwardCompatible(true).withProfileCore(true);
 

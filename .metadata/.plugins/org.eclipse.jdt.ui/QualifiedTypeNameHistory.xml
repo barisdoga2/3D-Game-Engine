@@ -24,11 +24,9 @@
 <fullyQualifiedTypeName name="dev.engine.textures.NormalTexture"/>
 <fullyQualifiedTypeName name="dev.engine.textures.SpecularTexture"/>
 <fullyQualifiedTypeName name="java.awt.Toolkit"/>
-<fullyQualifiedTypeName name="java.awt.Dimension"/>
 <fullyQualifiedTypeName name="dev.engine.utils.MousePicker"/>
 <fullyQualifiedTypeName name="dev.engine.utils.Maths"/>
 <fullyQualifiedTypeName name="dev.engine.loaders.Loader"/>
-<fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL30"/>
 <fullyQualifiedTypeName name="dev.engine.waters.WaterTile"/>
 <fullyQualifiedTypeName name="java.util.List"/>
@@ -42,9 +40,19 @@
 <fullyQualifiedTypeName name="dev.engine.loaders.ImageLoader"/>
 <fullyQualifiedTypeName name="dev.engine.EngineConfig"/>
 <fullyQualifiedTypeName name="renderEngine.DisplayManager"/>
-<fullyQualifiedTypeName name="dev.engine.renderEngine.DisplayManager"/>
 <fullyQualifiedTypeName name="dev.editor.MainBar"/>
 <fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
+<fullyQualifiedTypeName name="dev.engine.renderEngine.DisplayManager"/>
+<fullyQualifiedTypeName name="dev.editor.LeftPanel"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.SwingUtilities"/>
+<fullyQualifiedTypeName name="dev.editor.EditorRun"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
+<fullyQualifiedTypeName name="java.awt.Dimension"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="javax.swing.JMenu"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
 </qualifiedTypeNameHistroy>

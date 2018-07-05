@@ -1,20 +1,24 @@
 package dev.editor;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainBar extends JMenuBar{
+import javax.swing.JMenuBar;
+
+public class MainBar extends JMenuBar implements ActionListener{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MainBar(EditorRun editor) {
+	public MainBar(MapEditor editor) {
 		super();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent a) {
 		
-		JMenuItem testItem = new JMenuItem("Test Item");
-		this.add(testItem);
 	}
 	
 }
