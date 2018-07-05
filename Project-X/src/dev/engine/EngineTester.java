@@ -33,9 +33,11 @@ public class EngineTester {
 		Terrain testTerrain = testMap.getAllTerrains().get(0);
 
 		Player player = new Player("Player",
-				new TexturedModel(OBJLoader.LoadObjModel("/models/objs/player"),
-						new ModelTexture(ImageLoader.loadTexture("/models/textures/playerTexture"))),
-				new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(1, 1, 1), testMap);
+				new TexturedModel(OBJLoader.LoadObjModel("/models/objs/warriorV1"),
+						new ModelTexture(ImageLoader.loadTexture("/models/textures/whiteTexture"))),
+				new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(10, 10, 10), testMap);
+		player.getTexturedModel().getModelTexture().setShineDamper(10);
+		player.getTexturedModel().getModelTexture().setReflectivity(2);
 		player.setPosition(new Vector3f(819, 0, 647));
 
 		Camera testCamera = new Camera(player);
