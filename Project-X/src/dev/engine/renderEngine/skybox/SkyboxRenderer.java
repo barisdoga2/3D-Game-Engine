@@ -1,4 +1,4 @@
-package dev.engine.skybox;
+package dev.engine.renderEngine.skybox;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;

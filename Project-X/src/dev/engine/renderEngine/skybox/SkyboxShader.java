@@ -1,4 +1,4 @@
-package dev.engine.skybox;
+package dev.engine.renderEngine.skybox;
 
 import org.lwjgl.util.vector.Matrix4f;
 
@@ -7,8 +7,8 @@ import dev.engine.renderEngine.ShaderProgram;
 import dev.engine.utils.Maths;
 
 public class SkyboxShader extends ShaderProgram {
-	private static final String VERTEX_FILE = "src/dev/engine/skybox/skyboxVertexShader.glsl";
-	private static final String FRAGMENT_FILE = "src/dev/engine/skybox/skyboxFragmentShader.glsl";
+	private static final String VERTEX_FILE = "src/dev/engine/renderEngine/skybox/skyboxVertexShader.glsl";
+	private static final String FRAGMENT_FILE = "src/dev/engine/renderEngine/skybox/skyboxFragmentShader.glsl";
 
 	private int location_projectionMatrix;
 	private int location_viewMatrix;

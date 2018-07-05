@@ -40,6 +40,11 @@
 <fullyQualifiedTypeName name="dev.engine.waters.WaterFrameBuffer"/>
 <fullyQualifiedTypeName name="org.lwjgl.opengl.GL13"/>
 <fullyQualifiedTypeName name="dev.engine.loaders.ImageLoader"/>
-<fullyQualifiedTypeName name="dev.engine.renderEngine.DisplayManager"/>
 <fullyQualifiedTypeName name="dev.engine.EngineConfig"/>
+<fullyQualifiedTypeName name="renderEngine.DisplayManager"/>
+<fullyQualifiedTypeName name="dev.engine.renderEngine.DisplayManager"/>
+<fullyQualifiedTypeName name="dev.editor.MainBar"/>
+<fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
 </qualifiedTypeNameHistroy>

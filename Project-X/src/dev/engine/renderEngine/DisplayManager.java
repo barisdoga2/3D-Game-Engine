@@ -1,5 +1,6 @@
 package dev.engine.renderEngine;
 
+import java.awt.Canvas;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
@@ -49,6 +50,14 @@ public class DisplayManager {
 		long currentFrameTime = getCurrentTime();
 		deltaTimeSeconds = (currentFrameTime - lasftFrameTime) / 1000f;
 		lasftFrameTime = currentFrameTime;
+	}
+	
+	public static void SetParentCanvas(Canvas awtCanvas) {
+		try {
+			Display.setParent(awtCanvas);
+		} catch (LWJGLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void DestroyDisplay() {
