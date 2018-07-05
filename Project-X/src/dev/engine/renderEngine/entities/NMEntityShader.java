@@ -39,6 +39,7 @@ public class NMEntityShader extends ShaderProgram{
 	private int location_normalMapTexture;
 	private int location_specularTexture;
 	private int location_useSpecularMapping;
+	private int location_clipPlane;
 
 	public NMEntityShader() {
 		super(vertexShaderFile, fragmentShaderFile);
@@ -78,6 +79,7 @@ public class NMEntityShader extends ShaderProgram{
 		this.location_normalMapTexture = super.getUniformLocation("normalMapTexture");
 		this.location_specularTexture = super.getUniformLocation("specularTexture");
 		this.location_useSpecularMapping = super.getUniformLocation("useSpecularMapping");
+		this.location_clipPlane = super.getUniformLocation("clipPlane");
 		
 		this.location_lightPositionEyeSpace = new int[MAX_LIGHTS];
 		this.location_lightColor = new int[MAX_LIGHTS];
@@ -157,6 +159,10 @@ public class NMEntityShader extends ShaderProgram{
 	
 	public void loadUseSpecularMapping(boolean useSpecularMapping) {
 		super.loadBoolean(location_useSpecularMapping, useSpecularMapping);
+	}
+	
+	public void loadClipPane(Vector4f clipPlane) {
+		super.loadVector4f(location_clipPlane, clipPlane);
 	}
 	
 }

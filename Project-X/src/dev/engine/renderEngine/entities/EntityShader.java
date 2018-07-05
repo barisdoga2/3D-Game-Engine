@@ -5,6 +5,7 @@ import java.util.List;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 
 import dev.engine.entities.Camera;
 import dev.engine.entities.Light;
@@ -37,6 +38,7 @@ public class EntityShader extends ShaderProgram {
 	private int location_modelTexture;
 	private int location_specularTexture;
 	private int location_useSpecularMapping;
+	private int location_clipPlane;
 
 	public EntityShader() {
 		super(vertexShaderFile, fragmentShaderFile);
@@ -73,6 +75,7 @@ public class EntityShader extends ShaderProgram {
 		this.location_modelTexture = super.getUniformLocation("modelTexture");
 		this.location_specularTexture = super.getUniformLocation("specularTexture");
 		this.location_useSpecularMapping = super.getUniformLocation("useSpecularMapping");
+		this.location_clipPlane = super.getUniformLocation("clipPlane");
 
 		this.location_lightPosition = new int[MAX_LIGHTS];
 		this.location_lightColor = new int[MAX_LIGHTS];
@@ -144,6 +147,10 @@ public class EntityShader extends ShaderProgram {
 	
 	public void loadUseSpecularMapping(boolean useSpecularMapping) {
 		super.loadBoolean(location_useSpecularMapping, useSpecularMapping);
+	}
+	
+	public void loadClipPane(Vector4f clipPlane) {
+		super.loadVector4f(location_clipPlane, clipPlane);
 	}
 
 }

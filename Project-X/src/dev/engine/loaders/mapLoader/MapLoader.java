@@ -21,6 +21,7 @@ import dev.engine.models.TexturedModel;
 import dev.engine.terrains.Terrain;
 import dev.engine.terrains.TerrainTexture;
 import dev.engine.terrains.TerrainTexturePack;
+import dev.engine.waters.WaterTile;
 
 public class MapLoader {
 
@@ -45,6 +46,7 @@ public class MapLoader {
 		map.addTerrains(loadTerrains(mapName));
 		map.addEntities(loadEntities(mapName));
 		map.addLights(loadLights(mapName));
+		map.addWaters(loadWaters(mapName));
 
 		return map;
 	}
@@ -69,6 +71,16 @@ public class MapLoader {
 			String skyboxBack = eElement.getElementsByTagName("skyboxBack").item(0).getTextContent();
 			String skyboxFront = eElement.getElementsByTagName("skyboxFront").item(0).getTextContent();
 			
+			String waterDUDVTexture = eElement.getElementsByTagName("waterDUDVTexture").item(0).getTextContent();
+			String waterNormalTexture = eElement.getElementsByTagName("waterNormalTexture").item(0).getTextContent();
+			float waterWaveMoveSpeed = Float.parseFloat(eElement.getElementsByTagName("waterWaveMoveSpeed").item(0).getTextContent());
+			float waterWaveStrength = Float.parseFloat(eElement.getElementsByTagName("waterWaveStrength").item(0).getTextContent());
+			float waterTilingFactor = Float.parseFloat(eElement.getElementsByTagName("waterTilingFactor").item(0).getTextContent());
+			float waterReflectivityFactor = Float.parseFloat(eElement.getElementsByTagName("waterReflectivityFactor").item(0).getTextContent());
+			float waterShineDamper = Float.parseFloat(eElement.getElementsByTagName("waterShineDamper").item(0).getTextContent());
+			float waterReflectivity = Float.parseFloat(eElement.getElementsByTagName("waterReflectivity").item(0).getTextContent());
+
+			
 			map.setTilingFactor(Float.parseFloat(tilingFactor));
 			map.setFogDensity(Float.parseFloat(fogDensity));
 			map.setFogGradient(Float.parseFloat(fogGradient));
@@ -79,6 +91,15 @@ public class MapLoader {
 			
 			map.setSkyboxSize(skyBoxSize);
 			map.setSkyBox(new String[] {skyboxRight, skyboxLeft, skyboxTop, skyboxBottom, skyboxBack, skyboxFront});
+			
+			map.setWaterDUDVTextureID(ImageLoader.loadTexture(waterDUDVTexture));
+			map.setWaterNormalTextureID(ImageLoader.loadTexture(waterNormalTexture));
+			map.setWaterWaveMoveSpeed(waterWaveMoveSpeed);
+			map.setWaterWaveStrength(waterWaveStrength);
+			map.setWaterTilingFactor(waterTilingFactor);
+			map.setWaterReflectivityFactor(waterReflectivityFactor);
+			map.setWaterShineDamper(waterShineDamper);
+			map.setWaterReflectivity(waterReflectivity);
 			
 		}
 	}
@@ -225,6 +246,28 @@ public class MapLoader {
 		}
 
 		return lights;
+	}
+	
+	private static List<WaterTile> loadWaters(String path) {
+		List<WaterTile> waters = new ArrayList<WaterTile>();
+
+		NodeList nList = doc.getElementsByTagName("water");
+
+		for (int temp = 0; temp < nList.getLength(); temp++) {
+			Node nNode = nList.item(temp);
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element eElement = (Element) nNode;
+
+				String name = eElement.getAttribute("name");
+
+				Float midX = Float.parseFloat(eElement.getElementsByTagName("midX").item(0).getTextContent());
+				Float midZ = Float.parseFloat(eElement.getElementsByTagName("midZ").item(0).getTextContent());
+				
+				waters.add(new WaterTile(name, midX, midZ));
+			}
+		}
+
+		return waters;
 	}
 
 	private static void createAndStoreVector3f(List<Vector3f> toAdd, String[] tokens) {

@@ -87,6 +87,10 @@ public class Camera {
 			angleAroundPlayer -= angleChange;
 		}
 	}
+	
+	public void invertPitch() {
+		this.pitch = -pitch;
+	}
 
 	public Vector3f getPosition() {
 		return position;

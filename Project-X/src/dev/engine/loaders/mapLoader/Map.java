@@ -8,12 +8,14 @@ import org.lwjgl.util.vector.Vector3f;
 import dev.engine.entities.Entity;
 import dev.engine.entities.Light;
 import dev.engine.terrains.Terrain;
+import dev.engine.waters.WaterTile;
 
 public class Map {
 
 	private List<Entity> allEntities;
 	private List<Terrain> allTerrains;
 	private List<Light> allLights;
+	private List<WaterTile> allWaters;
 
 	private float tilingFactor;
 	private float fogDensity;
@@ -25,10 +27,20 @@ public class Map {
 	private float skyboxSize;
 	private String skyBox[];
 	
+	private int waterDUDVTextureID;
+	private int waterNormalTextureID;
+	private float waterWaveMoveSpeed;
+	private float waterWaveStrength;
+	private float waterTilingFactor;
+	private float waterReflectivityFactor;
+	private float waterShineDamper;
+	private float waterReflectivity;
+	
 	public Map() {
 		allEntities = new ArrayList<Entity>();
 		allTerrains = new ArrayList<Terrain>();
 		allLights = new ArrayList<Light>();
+		allWaters = new ArrayList<WaterTile>();
 	}
 
 	public void addEntities(List<Entity> e) {
@@ -53,6 +65,18 @@ public class Map {
 
 	public void addLight(Light l) {
 		allLights.add(l);
+	}
+	
+	public void addWaters(List<WaterTile> w) {
+		allWaters.addAll(w);
+	}
+
+	public void addWater(WaterTile w) {
+		allWaters.add(w);
+	}
+	
+	public List<WaterTile> getAllWaters(){
+		return allWaters;
 	}
 
 	public List<Entity> getAllEntities() {
@@ -131,4 +155,68 @@ public class Map {
 		this.skyBox = skyBox;
 	}
 
+	public int getWaterDUDVTextureID() {
+		return waterDUDVTextureID;
+	}
+
+	public void setWaterDUDVTextureID(int waterDUDVTextureID) {
+		this.waterDUDVTextureID = waterDUDVTextureID;
+	}
+
+	public int getWaterNormalTextureID() {
+		return waterNormalTextureID;
+	}
+
+	public void setWaterNormalTextureID(int waterNormalTextureID) {
+		this.waterNormalTextureID = waterNormalTextureID;
+	}
+
+	public float getWaterWaveMoveSpeed() {
+		return waterWaveMoveSpeed;
+	}
+
+	public void setWaterWaveMoveSpeed(float waterWaveMoveSpeed) {
+		this.waterWaveMoveSpeed = waterWaveMoveSpeed;
+	}
+
+	public float getWaterWaveStrength() {
+		return waterWaveStrength;
+	}
+
+	public void setWaterWaveStrength(float waterWaveStrength) {
+		this.waterWaveStrength = waterWaveStrength;
+	}
+
+	public float getWaterTilingFactor() {
+		return waterTilingFactor;
+	}
+
+	public void setWaterTilingFactor(float waterTilingFactor) {
+		this.waterTilingFactor = waterTilingFactor;
+	}
+
+	public float getWaterReflectivityFactor() {
+		return waterReflectivityFactor;
+	}
+
+	public void setWaterReflectivityFactor(float waterReflectivityFactor) {
+		this.waterReflectivityFactor = waterReflectivityFactor;
+	}
+
+	public float getWaterShineDamper() {
+		return waterShineDamper;
+	}
+
+	public void setWaterShineDamper(float waterShineDamper) {
+		this.waterShineDamper = waterShineDamper;
+	}
+
+	public float getWaterReflectivity() {
+		return waterReflectivity;
+	}
+
+	public void setWaterReflectivity(float waterReflectivity) {
+		this.waterReflectivity = waterReflectivity;
+	}
+	
 }

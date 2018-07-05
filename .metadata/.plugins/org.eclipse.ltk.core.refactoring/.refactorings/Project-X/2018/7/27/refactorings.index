@@ -99,3 +99,14 @@
 1530703932843	Move files
 1530703933547	Move file
 1530703936651	Move file
+1530770542611	Move compilation unit
+1530771710776	Rename local variable 'lights'
+1530772028858	Rename resource 'dudvMapTexture.png'
+1530772032100	Rename resource 'normalMapTexture.png'
+1530772067684	Copy file
+1530774625511	Delete elements
+1530779488844	Copy file
+1530782966876	Rename field 'location_waterMoveFactor'
+1530782974251	Rename field 'location_waterWaveMoveFactor'
+1530791331434	Rename method 'loadShineValues'
+1530791996687	Rename resource 'white.png'
