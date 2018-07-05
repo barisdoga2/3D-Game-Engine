@@ -1,7 +1,7 @@
 package dev.engine.renderEngine;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
@@ -24,9 +24,9 @@ public class DisplayManager {
 
 		EngineConfig config = EngineConfig.getInstance();
 		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int)screenSize.getWidth();
-		int height = (int)screenSize.getHeight();
+		GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int width = graphicsDevice.getDisplayMode().getWidth();
+		int height = graphicsDevice.getDisplayMode().getHeight();
 
 		try {
 			Display.setDisplayMode(new DisplayMode(width, height));
