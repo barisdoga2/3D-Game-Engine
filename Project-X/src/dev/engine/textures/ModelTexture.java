@@ -1,38 +1,33 @@
 package dev.engine.textures;
 
-public class ModelTexture {
-
-	private int textureID;
+public class ModelTexture{
 
 	private String name;
+	private BaseTexture baseTexture;
+	
 	private boolean hasTransparency = false;
 	private boolean hasFakeLighting = false;
 	private float shineDamper = 1;
 	private float reflectivity = 0;
-
 	private int atlasNumberOfRows = 1;
-	/*
-	 * Atlas Indexing Example Atlases must be square. [0 , 1 , 2] [3 , 4 , 5] [6 , 7
-	 * , 8]
-	 */
 
-	public ModelTexture(String name, int textureID, boolean hasTransparency, boolean hasFakeLighting, float shineDamper,
-			float reflectivity, int atlasNumberOfRows) {
+	public ModelTexture(String name, BaseTexture baseTexture, boolean hasTransparency, boolean hasFakeLighting, float shineDamper, float reflectivity, int atlasNumberOfRows) {
 		this.name = name;
-		this.textureID = textureID;
-		this.hasTransparency = hasFakeLighting;
+		this.baseTexture = baseTexture;
+		this.hasTransparency = hasTransparency;
 		this.hasFakeLighting = hasFakeLighting;
 		this.shineDamper = shineDamper;
 		this.reflectivity = reflectivity;
 		this.atlasNumberOfRows = atlasNumberOfRows;
 	}
-
-	public ModelTexture(int textureID) {
-		this.textureID = textureID;
+	
+	public ModelTexture(String name, BaseTexture baseTexture) {
+		this.name = name;
+		this.baseTexture = baseTexture;
 	}
-
-	public int getTextureID() {
-		return this.textureID;
+	
+	public BaseTexture getBaseTexture() {
+		return baseTexture;
 	}
 
 	public float getShineDamper() {
@@ -77,6 +72,15 @@ public class ModelTexture {
 
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public void setBaseTexture(BaseTexture baseTexture) {
+		this.baseTexture = baseTexture;
 	}
 
 }

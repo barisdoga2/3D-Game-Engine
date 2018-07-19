@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
+import dev.engine.loaders.mapLoader.Map;
 import dev.engine.models.RawModel;
 import dev.engine.terrains.Terrain;
 import dev.engine.terrains.TerrainTexturePack;
@@ -16,20 +17,36 @@ import dev.engine.utils.Maths;
 
 public class TerrainRenderer {
 
+	private Map map;
 	private TerrainShader terrainShader;
 
 	public TerrainRenderer(TerrainShader terrainShader, Matrix4f projectionMatrix,
 			dev.engine.loaders.mapLoader.Map map) {
 		this.terrainShader = terrainShader;
+		this.map = map;
 
 		terrainShader.start();
-		terrainShader.loadTilingFactor(map.getTilingFactor());
-		terrainShader.loadFogVariables(map.getFogDensity(), map.getFogGradient());
-		terrainShader.loadMinLightingVariables(map.getMinDiffuseLighting(), map.getMinSpecularLighting());
-		terrainShader.loadSkyColor(map.getSkyColor());
+		terrainShader.loadTilingFactor(map.getMapSettings().getTilingFactor());
+		terrainShader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+		terrainShader.loadMinLightingVariables(map.getMapSettings().getMinDiffuseLighting(), map.getMapSettings().getMinSpecularLighting());
+		terrainShader.loadSkyColor(map.getMapSettings().getSkyColor());
 
 		terrainShader.loadProjectionMatrix(projectionMatrix);
 		terrainShader.stop();
+	}
+	
+	public void reLoadSettings() {
+		boolean isRunning = terrainShader.isRunning();
+		if(!isRunning)
+			terrainShader.start();
+		
+		terrainShader.loadTilingFactor(map.getMapSettings().getTilingFactor());
+		terrainShader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+		terrainShader.loadMinLightingVariables(map.getMapSettings().getMinDiffuseLighting(), map.getMapSettings().getMinSpecularLighting());
+		terrainShader.loadSkyColor(map.getMapSettings().getSkyColor());
+		
+		if(!isRunning)
+			terrainShader.stop();
 	}
 
 	public void render(List<Terrain> terrains) {

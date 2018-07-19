@@ -119,5 +119,18 @@ public class Entity {
 	public String getName() {
 		return name;
 	}
+	
+	public int getTextureAtlasIndex() {
+		return textureAtlasIndex;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public void setName(String text) {
+		this.name = text;
+	}
 
 }

@@ -1,5 +1,0 @@
-package dev.engine.loaders.mapLoader;
-
-public class SpecularTextureLoader {
-
-}

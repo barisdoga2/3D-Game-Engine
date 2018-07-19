@@ -33,18 +33,32 @@ public class WaterRenderer {
         EngineConfig configInstance = EngineConfig.getInstance();
         shader.start();
         shader.loadNearAndFarPlane(configInstance.getFloat("near_plane"), configInstance.getFloat("far_plane"));
-        shader.loadWaterShineValues(map.getWaterShineDamper(), map.getWaterReflectivity());
-        shader.loadSkyColor(map.getSkyColor());
-        shader.loadFogVariables(map.getFogDensity(), map.getFogGradient());
-        shader.loadWaterVariables(map.getWaterTilingFactor(), map.getWaterWaveStrength(), map.getWaterReflectivityFactor());
+        shader.loadWaterShineValues(map.getMapSettings().getWaterShineDamper(), map.getMapSettings().getWaterReflectivity());
+        shader.loadSkyColor(map.getMapSettings().getSkyColor());
+        shader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+        shader.loadWaterVariables(map.getMapSettings().getWaterTilingFactor(), map.getMapSettings().getWaterWaveStrength(), map.getMapSettings().getWaterReflectivityFactor());
         shader.loadProjectionMatrix(projectionMatrix);
         shader.stop();
         setUpVAO();
     }
+    
+    public void reLoadSettings() {
+		boolean isRunning = shader.isRunning();
+		if(!isRunning)
+			shader.start();
+		
+		shader.loadWaterShineValues(map.getMapSettings().getWaterShineDamper(), map.getMapSettings().getWaterReflectivity());
+        shader.loadSkyColor(map.getMapSettings().getSkyColor());
+        shader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+        shader.loadWaterVariables(map.getMapSettings().getWaterTilingFactor(), map.getMapSettings().getWaterWaveStrength(), map.getMapSettings().getWaterReflectivityFactor());
+		
+		if(!isRunning)
+			shader.stop();
+    }
  
     public void render(List<WaterTile> water) {
     	
-    	waterWaveMoveFactor += map.getWaterWaveMoveSpeed() * DisplayManager.getDeltaTimeSeconds();
+    	waterWaveMoveFactor += map.getMapSettings().getWaterWaveMoveSpeed() * DisplayManager.getDeltaTimeSeconds();
     	waterWaveMoveFactor %= 1f;
     	
     	GL30.glBindVertexArray(quad.getVAOID());
@@ -54,9 +68,9 @@ public class WaterRenderer {
         GL13.glActiveTexture(GL13.GL_TEXTURE1);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, waterFrameBuffer.getRefractionColorTextureID());
         GL13.glActiveTexture(GL13.GL_TEXTURE2);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, map.getWaterDUDVTextureID());
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, map.getMapSettings().getWaterType().getDudvTextureID());
         GL13.glActiveTexture(GL13.GL_TEXTURE3);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, map.getWaterNormalTextureID());
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, map.getMapSettings().getWaterType().getNormalTextureID());
         GL13.glActiveTexture(GL13.GL_TEXTURE4);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, waterFrameBuffer.getRefractionDepthTextureID());
         GL11.glEnable(GL11.GL_BLEND);
@@ -77,7 +91,7 @@ public class WaterRenderer {
  
     private void setUpVAO() {
         float[] vertices = { -1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1 };
-        quad = Loader.loadToVAO(vertices, 2);
+        quad = Loader.loadToVAO(null, null, vertices, 2);
     }
  
 }

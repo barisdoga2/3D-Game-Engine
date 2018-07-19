@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<editorCreatedThisMap>
+<settings>
+<tilingFactor>40.0</tilingFactor>
+<fogDensity>0.002</fogDensity>
+<fogGradient>5.0</fogGradient>
+<skyColor>0.0, 0.65, 0.85</skyColor>
+<minDiffuseLighting>0.33</minDiffuseLighting>
+<minSpecularLighting>0.0</minSpecularLighting>
+<skyboxName>skybox</skyboxName>
+<waterTypeName>water</waterTypeName>
+<waterWaveMoveSpeed>0.03</waterWaveMoveSpeed>
+<waterWaveStrength>0.04</waterWaveStrength>
+<waterReflectivityFactor>0.5</waterReflectivityFactor>
+<waterTilingFactor>1.0</waterTilingFactor>
+<waterShineDamper>10.0</waterShineDamper>
+<waterReflectivity>0.5</waterReflectivity>
+</settings>
+<waters>
+</waters>
+<terrains>
+</terrains>
+<lights>
+</lights>
+<entities>
+</entities>
+</editorCreatedThisMap>
