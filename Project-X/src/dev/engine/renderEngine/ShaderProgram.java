@@ -17,6 +17,7 @@ public abstract class ShaderProgram {
 
 	private static FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
 
+	private boolean isRunning;
 	private int programID;
 	private int vertexShaderID;
 	private int fragmentShaderID;
@@ -39,10 +40,12 @@ public abstract class ShaderProgram {
 	}
 
 	public void start() {
+		isRunning = true;
 		GL20.glUseProgram(this.programID);
 	}
 
 	public void stop() {
+		isRunning = false;
 		GL20.glUseProgram(0);
 	}
 
@@ -98,6 +101,10 @@ public abstract class ShaderProgram {
 	protected void loadVector4f(int locationOfUniformVariable, Vector4f vector4fToLoad) {
 		GL20.glUniform4f(locationOfUniformVariable, vector4fToLoad.x, vector4fToLoad.y, vector4fToLoad.z, vector4fToLoad.w);
 	}
+	
+	public boolean isRunning() {
+		return isRunning;
+	}
 
 	private static int loadShader(String file, int type) {
 		StringBuilder shaderSource = new StringBuilder();
@@ -120,5 +127,5 @@ public abstract class ShaderProgram {
 		}
 		return shaderID;
 	}
-
+	
 }

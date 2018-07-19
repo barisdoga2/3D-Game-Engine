@@ -39,6 +39,9 @@ public class TerrainShader extends ShaderProgram {
 	private int location_minDiffuseLighting;
 	private int location_minSpecularLighting;
 	private int location_clipPlane;
+	private int location_brushPosition;
+	private int location_brushWidth;
+	private int location_brushColor;
 
 	public TerrainShader() {
 		super(vertexShaderFile, fragmentShaderFile);
@@ -71,6 +74,9 @@ public class TerrainShader extends ShaderProgram {
 		this.location_minDiffuseLighting = super.getUniformLocation("minDiffuseLighting");
 		this.location_minSpecularLighting = super.getUniformLocation("minSpecularLighting");
 		this.location_clipPlane = super.getUniformLocation("clipPlane");
+		this.location_brushPosition = super.getUniformLocation("brushPosition");
+		this.location_brushWidth = super.getUniformLocation("brushWidth");
+		this.location_brushColor = super.getUniformLocation("brushColor");
 
 		this.location_lightPosition = new int[MAX_LIGHTS];
 		this.location_lightColor = new int[MAX_LIGHTS];
@@ -80,6 +86,12 @@ public class TerrainShader extends ShaderProgram {
 			this.location_lightColor[i] = super.getUniformLocation("lightColor[" + i + "]");
 			this.location_lightAttenuation[i] = super.getUniformLocation("lightAttenuation[" + i + "]");
 		}
+	}
+	
+	public void loadBrushInfo(float brushWidth, Vector3f brushPosition, Vector4f brushColor) {
+		super.loadFloat(location_brushWidth, brushWidth);
+		super.loadVector3f(location_brushPosition, brushPosition);
+		super.loadVector4f(location_brushColor, brushColor);
 	}
 
 	public void loadTransformationMatrix(Matrix4f transformationMatrix) {

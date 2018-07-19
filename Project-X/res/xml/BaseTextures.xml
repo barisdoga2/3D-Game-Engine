@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<baseTextures>
+
+<baseTexture name="backgroundTexture" path="baseTextures/grass"/>
+<baseTexture name="rTexture" path="baseTextures/desert"/>
+<baseTexture name="gTexture" path="baseTextures/grassFlowers"/>
+<baseTexture name="bTexture" path="baseTextures/path"/>
+<baseTexture name="aTexture" path="baseTextures/dirt"/>
+<baseTexture name="backgroundTexture2" path="baseTextures/grass2"/>
+<baseTexture name="rTexture2" path="baseTextures/desert2"/>
+<baseTexture name="gTexture2" path="baseTextures/grassFlowers2"/>
+<baseTexture name="bTexture2" path="baseTextures/path2"/>
+<baseTexture name="aTexture2" path="baseTextures/dirt2"/>
+<baseTexture name="blendMapTexture" path="baseTextures/blendMap"/>
+<baseTexture name="heightMapTexture" path="baseTextures/heightMap"/>
+<baseTexture name="heightMapTexture2" path="baseTextures/heightMap2"/>
+<baseTexture name="lanternTexture" path="baseTextures/lanternTexture"/>
+<baseTexture name="lanternSpecularTexture" path="baseTextures/lanternSpecularTexture"/>
+<baseTexture name="lampTexture" path="baseTextures/lampTexture"/>
+<baseTexture name="lampSpecularTexture" path="baseTextures/lampSpecularTexture"/>
+<baseTexture name="fernTextureAtlas" path="baseTextures/fernTextureAtlas"/>
+<baseTexture name="grassTexture" path="baseTextures/grassTexture"/>
+<baseTexture name="treeTexture" path="baseTextures/treeTexture"/>
+<baseTexture name="treeSpecularTexture" path="baseTextures/treeSpecularTexture"/>
+<baseTexture name="barrelTexture" path="baseTextures/barrelTexture"/>
+<baseTexture name="barrelNormalTexture" path="baseTextures/barrelNormalTexture"/>
+<baseTexture name="barrelSpecularTexture" path="baseTextures/barrelSpecularTexture"/>
+<baseTexture name="crateTexture" path="baseTextures/crateTexture"/>
+<baseTexture name="crateNormalTexture" path="baseTextures/crateNormalTexture"/>
+<baseTexture name="boulderTexture" path="baseTextures/boulderTexture"/>
+
+<baseTexture name="stallTexture" path="baseTextures/stallTexture"/>
+<baseTexture name="warriorV1Texture" path="baseTextures/warriorV1Texture"/>
+
+
+
+
+</baseTextures>

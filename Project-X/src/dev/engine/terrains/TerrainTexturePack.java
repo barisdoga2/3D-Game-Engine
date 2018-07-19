@@ -1,15 +1,17 @@
 package dev.engine.terrains;
 
+import dev.engine.textures.BaseTexture;
+
 public class TerrainTexturePack {
 
-	public TerrainTexture backgroundTerrainTexture;
-	public TerrainTexture rTerrainTexture;
-	public TerrainTexture gTerrainTexture;
-	public TerrainTexture bTerrainTexture;
-	public TerrainTexture aTerrainTexture;
+	public BaseTexture backgroundTerrainTexture;
+	public BaseTexture rTerrainTexture;
+	public BaseTexture gTerrainTexture;
+	public BaseTexture bTerrainTexture;
+	public BaseTexture aTerrainTexture;
 
-	public TerrainTexturePack(TerrainTexture backgroundTerrainTexture, TerrainTexture rTerrainTexture,
-			TerrainTexture gTerrainTexture, TerrainTexture bTerrainTexture, TerrainTexture aTerrainTexture) {
+	public TerrainTexturePack(BaseTexture backgroundTerrainTexture, BaseTexture rTerrainTexture,
+			BaseTexture gTerrainTexture, BaseTexture bTerrainTexture, BaseTexture aTerrainTexture) {
 		this.backgroundTerrainTexture = backgroundTerrainTexture;
 		this.rTerrainTexture = rTerrainTexture;
 		this.gTerrainTexture = gTerrainTexture;
@@ -17,23 +19,23 @@ public class TerrainTexturePack {
 		this.aTerrainTexture = aTerrainTexture;
 	}
 
-	public TerrainTexture getBackgroundTerrainTexture() {
+	public BaseTexture getBackgroundTerrainTexture() {
 		return backgroundTerrainTexture;
 	}
 
-	public TerrainTexture getRTerrainTexture() {
+	public BaseTexture getRTerrainTexture() {
 		return rTerrainTexture;
 	}
 
-	public TerrainTexture getGTerrainTexture() {
+	public BaseTexture getGTerrainTexture() {
 		return gTerrainTexture;
 	}
 
-	public TerrainTexture getBTerrainTexture() {
+	public BaseTexture getBTerrainTexture() {
 		return bTerrainTexture;
 	}
 
-	public TerrainTexture getATerrainTexture() {
+	public BaseTexture getATerrainTexture() {
 		return aTerrainTexture;
 	}
 

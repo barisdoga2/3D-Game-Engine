@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<structures>
+
+<texturedModels>
+<texturedModel modelTextureName="lanternShinyTexture" name="lantern" normalBaseTextureName="lanternSpecularTexture" rawModelPath="models/objs/lantern" specularBaseTextureName="lanternSpecularTexture"/>
+<texturedModel modelTextureName="lampShinyTexture" name="lamp" normalBaseTextureName="" rawModelPath="models/objs/lamp" specularBaseTextureName="lampSpecularTexture"/>
+<texturedModel modelTextureName="fernTextureAtlasTexture" name="fern" normalBaseTextureName="" rawModelPath="models/objs/fern" specularBaseTextureName=""/>
+<texturedModel modelTextureName="grassTexture" name="grass" normalBaseTextureName="" rawModelPath="models/objs/grass" specularBaseTextureName=""/>
+<texturedModel modelTextureName="treeTexture" name="tree" normalBaseTextureName="" rawModelPath="models/objs/tree" specularBaseTextureName=""/>
+<texturedModel modelTextureName="treeShinyTexture" name="treeSpecular" normalBaseTextureName="" rawModelPath="models/objs/tree" specularBaseTextureName="treeSpecularTexture"/>
+<texturedModel modelTextureName="barrelTexture" name="barrel" normalBaseTextureName="" rawModelPath="models/objs/barrel" specularBaseTextureName=""/>
+<texturedModel modelTextureName="barrelTexture" name="barrelNormal" normalBaseTextureName="barrelNormalTexture" rawModelPath="models/objs/barrel" specularBaseTextureName=""/>
+<texturedModel modelTextureName="barrelTexture" name="barrelSpecular" normalBaseTextureName="" rawModelPath="models/objs/barrel" specularBaseTextureName="barrelSpecularTexture"/>
+<texturedModel modelTextureName="barrelTexture" name="barrelSpecularNormal" normalBaseTextureName="barrelNormalTexture" rawModelPath="models/objs/barrel" specularBaseTextureName="barrelSpecularTexture"/>
+<texturedModel modelTextureName="crateTexture" name="crate" normalBaseTextureName="" rawModelPath="models/objs/crate" specularBaseTextureName=""/>
+<texturedModel modelTextureName="crateTexture" name="crateNormal" normalBaseTextureName="crateNormalTexture" rawModelPath="models/objs/crate" specularBaseTextureName=""/>
+<texturedModel modelTextureName="boulderTexture" name="boulder" normalBaseTextureName="" rawModelPath="models/objs/boulder" specularBaseTextureName=""/>
+<texturedModel modelTextureName="boulderTexture" name="boulderNormal" normalBaseTextureName="" rawModelPath="models/objs/boulder" specularBaseTextureName=""/>
+<texturedModel modelTextureName="stallTexture" name="stall" normalBaseTextureName="" rawModelPath="models/objs/stall" specularBaseTextureName=""/>
+<texturedModel modelTextureName="warriorV1Texture" name="warriorV1" normalBaseTextureName="" rawModelPath="models/objs/warriorV1" specularBaseTextureName=""/>
+
+</texturedModels>
+
+<skyboxes>
+<skybox folderPath="skyboxes/skybox" name="skybox"/>
+<skybox folderPath="skyboxes/skybox2" name="skybox2"/>
+</skyboxes>
+
+<waterTypes>
+<waterType folderPath="waters/water" name="water"/>
+<waterType folderPath="waters/water2" name="water2"/>
+</waterTypes>
+
+</structures>

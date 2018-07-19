@@ -19,14 +19,16 @@ import dev.engine.utils.Maths;
 public class NMEntityRenderer {
 
 	private NMEntityShader nmEntityShader;
-
+	private dev.engine.loaders.mapLoader.Map map;
+	
 	public NMEntityRenderer(NMEntityShader nmEntityShader, Matrix4f projectionMatrix, dev.engine.loaders.mapLoader.Map map) {
-		this.nmEntityShader = new NMEntityShader();
+		this.nmEntityShader = nmEntityShader;
+		this.map = map;
 		
 		nmEntityShader.start();
-		nmEntityShader.loadFogVariables(map.getFogDensity(), map.getFogGradient());
-		nmEntityShader.loadMinLightingVariables(map.getMinDiffuseLighting(), map.getMinSpecularLighting());
-		nmEntityShader.loadSkyColor(map.getSkyColor());
+		nmEntityShader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+		nmEntityShader.loadMinLightingVariables(map.getMapSettings().getMinDiffuseLighting(), map.getMapSettings().getMinSpecularLighting());
+		nmEntityShader.loadSkyColor(map.getMapSettings().getSkyColor());
 		
 		nmEntityShader.loadProjectionMatrix(projectionMatrix);
 		nmEntityShader.stop();
@@ -43,6 +45,19 @@ public class NMEntityRenderer {
 			unbindTexturedModel();
 		}
 	}
+	
+	public void reLoadSettings() {
+		boolean isRunning = nmEntityShader.isRunning();
+		if(!isRunning)
+			nmEntityShader.start();
+		
+		nmEntityShader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+		nmEntityShader.loadMinLightingVariables(map.getMapSettings().getMinDiffuseLighting(), map.getMapSettings().getMinSpecularLighting());
+		nmEntityShader.loadSkyColor(map.getMapSettings().getSkyColor());
+		
+		if(!isRunning)
+			nmEntityShader.stop();
+	}
 
 	private void prepareTexturedModel(TexturedModel texturedModel) {
 		RawModel rawModel = texturedModel.getRawModel();
@@ -58,7 +73,7 @@ public class NMEntityRenderer {
 		nmEntityShader.loadShineValues(texture.getShineDamper(), texture.getReflectivity());
 		
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getModelTexture().getTextureID());
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getModelTexture().getBaseTexture().getTextureID());
 		
 		GL13.glActiveTexture(GL13.GL_TEXTURE1);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texturedModel.getNormalMappingTexture().getTextureID());

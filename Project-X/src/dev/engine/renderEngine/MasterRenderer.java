@@ -32,6 +32,8 @@ import dev.engine.waters.WaterTile;
 
 public class MasterRenderer {
 
+	private static boolean renderSkybox = true;
+	
 	private Matrix4f projectionMatrix;
 	private Vector3f skyColor;
 
@@ -43,6 +45,9 @@ public class MasterRenderer {
 	private NMEntityRenderer nmEntityRenderer;
 	private Map<TexturedModel, List<Entity>> allNMEntities = new HashMap<TexturedModel, List<Entity>>();
 
+	private Vector4f brushColor = new Vector4f(1.0f, 1.0f, 1.0f, 0.5f);
+	private static Vector3f brushPosition = new Vector3f(0.0f, 0.0f, 0.0f);
+	private static float brushWidth = 0f;
 	private TerrainShader terrainShader;
 	private TerrainRenderer terrainRenderer;
 	private List<Terrain> allTerrains = new ArrayList<Terrain>();
@@ -59,7 +64,7 @@ public class MasterRenderer {
 	public MasterRenderer(dev.engine.loaders.mapLoader.Map map) {
 		MasterRenderer.EnableCulling();
 		this.projectionMatrix = Maths.createProjectionMatrix();
-		this.skyColor = map.getSkyColor();
+		this.skyColor = map.getMapSettings().getSkyColor();
 
 		this.entityShader = new EntityShader();
 		this.entityRenderer = new EntityRenderer(entityShader, projectionMatrix, map);
@@ -75,6 +80,14 @@ public class MasterRenderer {
 		
 		this.waterShader = new WaterShader();
 		this.waterRenderer = new WaterRenderer(waterShader, projectionMatrix, waterFrameBuffer, map);
+	}
+	
+	public void reLoadSettings() {
+		entityRenderer.reLoadSettings();
+		terrainRenderer.reLoadSettings();
+		skyboxRenderer.reLoadSettings();
+		nmEntityRenderer.reLoadSettings();
+		waterRenderer.reLoadSettings();
 	}
 	
 	public void renderScene(Camera camera, List<Light> lights) {
@@ -115,10 +128,12 @@ public class MasterRenderer {
 		prepare();		
 		
 		// Rendering Skybox
-		skyboxRenderer.render(camera);
+		if(renderSkybox)
+			skyboxRenderer.render(camera);
 		
 		// Rendering Terrains
 		terrainShader.start();
+		terrainShader.loadBrushInfo(brushWidth, brushPosition, brushColor);
 		terrainShader.loadClipPane(clipPlane);
 		terrainShader.loadLights(lights);
 		terrainShader.loadViewMatrix(camera);
@@ -209,6 +224,30 @@ public class MasterRenderer {
 		terrainShader.cleanUp();
 		entityShader.cleanUp();
 		nmEntityShader.cleanUp();
+	}
+
+	public void setRenderSkybox(boolean value) {
+		renderSkybox = value;
+	}
+
+	public static boolean isRenderSkybox() {
+		return renderSkybox;
+	}
+
+	public static void EnableBrush(float brushWidth) {
+		MasterRenderer.brushWidth = brushWidth;
+	}
+
+	public static void DisableBrush() {
+		MasterRenderer.brushWidth = 0;
+	}
+
+	public static void setBrushPosition(Vector3f vec) {
+		MasterRenderer.brushPosition = vec;
+	}
+
+	public static void setBrushWidth(float value) {
+		MasterRenderer.brushWidth = value;
 	}
 
 }

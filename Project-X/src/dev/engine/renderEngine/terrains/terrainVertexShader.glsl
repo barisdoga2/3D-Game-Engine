@@ -13,12 +13,14 @@ uniform vec3 lightPosition[maxLightCount];	// Per-Pixel Lighting
 uniform float densityOfFog;					// Fog
 uniform float gradientOfFog;				// Fog
 uniform vec4 clipPlane;
+uniform vec3 brushPosition;
 
 out vec2 pass_textureCoords;
 out vec3 surfaceNormal; 					// Per-Pixel Lighting
 out vec3 toLightVector[maxLightCount];		// Per-Pixel Lighting
 out vec3 toCameraVector;					// Specular Lighting
 out float visibility;						// Fog
+out float distanceFromBrush;
 
 
 void main(){
@@ -43,4 +45,6 @@ void main(){
 	float distanceFromCamera = length(positionRelativeToCamera.xyz);							// Fog
 	visibility = exp(-pow((distanceFromCamera * densityOfFog), gradientOfFog));					// Fog
 	visibility = clamp(visibility, 0.0, 1.0);
+
+	distanceFromBrush = length(worldPosition.xz - brushPosition.xz);
 }

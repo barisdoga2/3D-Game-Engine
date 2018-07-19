@@ -18,7 +18,7 @@ public class Loader {
 	private static List<Integer> allVAOs = new ArrayList<Integer>();
 	private static List<Integer> allVBOs = new ArrayList<Integer>();
 	
-	public static RawModel loadToVAO(float[] positions, float[] textureCoords, float[] normals, float[] tangents, int[] indices) {
+	public static RawModel loadToVAO(String name, String path, float[] positions, float[] textureCoords, float[] normals, float[] tangents, int[] indices) {
 		int vaoID = createVAO();
 		bindIndicesBuffer(indices);
 
@@ -28,10 +28,10 @@ public class Loader {
 		storeDataInAttributeList(3, 3, tangents);
 
 		unbindVAO();
-		return new RawModel(vaoID, indices.length);
+		return new RawModel(name, path, vaoID, indices.length);
 	}
 
-	public static RawModel loadToVAO(float[] positions, float[] textureCoords, float[] normals, int[] indices) {
+	public static RawModel loadToVAO(String name, String path, float[] positions, float[] textureCoords, float[] normals, int[] indices) {
 		int vaoID = createVAO();
 		bindIndicesBuffer(indices);
 
@@ -40,14 +40,14 @@ public class Loader {
 		storeDataInAttributeList(2, 3, normals);
 
 		unbindVAO();
-		return new RawModel(vaoID, indices.length);
+		return new RawModel(name, path, vaoID, indices.length);
 	}
 	
-	public static RawModel loadToVAO(float[] positions, int dimensions) {
+	public static RawModel loadToVAO(String name, String path, float[] positions, int dimensions) {
 		int vaoID = createVAO();
 		storeDataInAttributeList(0, dimensions, positions);
 		unbindVAO();
-		return new RawModel(vaoID, positions.length / dimensions);
+		return new RawModel(name, path, vaoID, positions.length / dimensions);
 	}
 	
 	private static int createVAO(){
@@ -105,6 +105,12 @@ public class Loader {
 		for (int id : allVBOs) {
 			GL15.glDeleteBuffers(id);
 		}
+	}
+
+	public static void changeAttributeData(int vaoID, int attributeNumber, int coordinateSize, float[] newData){
+		GL30.glBindVertexArray(vaoID);
+		storeDataInAttributeList(attributeNumber, coordinateSize, newData);
+		unbindVAO();
 	}
 
 }
