@@ -1,7 +1,0 @@
-package dev.engine.textures;
-
-public class NormalTexture {
-	
-	public NormalTexture(String name, int textureID)
-	
-}
