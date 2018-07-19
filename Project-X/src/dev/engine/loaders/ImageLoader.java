@@ -23,7 +23,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 import de.matthiasmann.twl.utils.PNGDecoder;
 import de.matthiasmann.twl.utils.PNGDecoder.Format;
 import dev.engine.EngineConfig;
-import dev.engine.skybox.TextureData;
+import dev.engine.renderEngine.skybox.TextureData;
 
 public class ImageLoader {
 	

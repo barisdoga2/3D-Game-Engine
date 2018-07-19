@@ -1,4 +1,4 @@
-package dev.engine.skybox;
+package dev.engine.renderEngine.skybox;
 
 import java.nio.ByteBuffer;
 
