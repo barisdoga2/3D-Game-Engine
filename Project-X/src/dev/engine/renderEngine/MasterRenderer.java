@@ -25,11 +25,6 @@ import dev.engine.renderEngine.terrains.TerrainRenderer;
 import dev.engine.renderEngine.terrains.TerrainShader;
 import dev.engine.renderEngine.waters.WaterRenderer;
 import dev.engine.renderEngine.waters.WaterShader;
-<<<<<<< HEAD
-import dev.engine.renderEngine.skybox.SkyboxRenderer;
-import dev.engine.renderEngine.skybox.SkyboxShader;
-=======
->>>>>>> editors
 import dev.engine.terrains.Terrain;
 import dev.engine.utils.Maths;
 import dev.engine.waters.WaterFrameBuffer;

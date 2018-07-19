@@ -6,13 +6,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="libs/jars/lwjgl_util.jar">
+	<classpathentry exported="true" kind="lib" path="libs/jars/lwjgl_util.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Project-X/libs/natives/windows"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/jars/lwjgl.jar"/>
-	<classpathentry kind="lib" path="libs/jars/PNGDecoder.jar"/>
-	<classpathentry kind="lib" path="libs/jars/slick-util.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/jars/lwjgl.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/jars/PNGDecoder.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/jars/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
