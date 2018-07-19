@@ -1,5 +1,7 @@
 package dev.engine.utils;
 
+import java.util.List;
+
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
@@ -67,6 +69,12 @@ public class Maths {
 		float l2 = ((p3.z - p1.z) * (pos.x - p3.x) + (p1.x - p3.x) * (pos.y - p3.z)) / det;
 		float l3 = 1.0f - l1 - l2;
 		return l1 * p1.y + l2 * p2.y + l3 * p3.y;
+	}
+	
+	public static void createAndStoreVector3f(List<Vector3f> toAdd, String[] tokens) {
+		for (int i = 0; i < tokens.length / 3; i++)
+			toAdd.add(new Vector3f(Float.parseFloat(tokens[i * 3 + 0]), Float.parseFloat(tokens[i * 3 + 1]),
+					Float.parseFloat(tokens[i * 3 + 2])));
 	}
 	
 }

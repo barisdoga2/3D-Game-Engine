@@ -1,18 +1,17 @@
 package dev.engine.models;
 
+import dev.engine.textures.BaseTexture;
 import dev.engine.textures.ModelTexture;
-import dev.engine.textures.NormalTexture;
-import dev.engine.textures.SpecularTexture;
 
 public class TexturedModel {
 	
 	private String name;
 	private RawModel rawModel;
 	private ModelTexture modelTexture;
-	private NormalTexture normalMappingTexture;
-	private SpecularTexture specularMappingTexture;
+	private BaseTexture normalMappingTexture;
+	private BaseTexture specularMappingTexture;
 	
-	public TexturedModel(String name, RawModel rawModel, ModelTexture modelTexture, NormalTexture normalMappingTexture, SpecularTexture specularMappingTexture) {
+	public TexturedModel(String name, RawModel rawModel, ModelTexture modelTexture, BaseTexture normalMappingTexture, BaseTexture specularMappingTexture) {
 		this.name = name;
 		this.rawModel = rawModel;
 		this.modelTexture = modelTexture;
@@ -37,12 +36,33 @@ public class TexturedModel {
 		return name;
 	}
 
-	public NormalTexture getNormalMappingTexture() {
+	public BaseTexture getNormalMappingTexture() {
 		return normalMappingTexture;
 	}
 	
-	public SpecularTexture getSpecularMappingTexture() {
+	public BaseTexture getSpecularMappingTexture() {
 		return specularMappingTexture;
+	}
+
+	public void setModelTexture(ModelTexture modelTexture) {
+		this.modelTexture = modelTexture;
+	}
+
+	public void setSpecularMappingTexture(BaseTexture specularTexture) {
+		this.specularMappingTexture = specularTexture;
+	}
+
+	public void setNormalMappingTexture(BaseTexture normalTexture) {
+		this.normalMappingTexture = normalTexture;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public void setRawModel(RawModel rawModel) {
+		this.rawModel = rawModel;
 	}
 	
 }

@@ -19,17 +19,32 @@ import dev.engine.utils.Maths;
 public class EntityRenderer {
 
 	private EntityShader entityShader;
+	private dev.engine.loaders.mapLoader.Map map;
 
 	public EntityRenderer(EntityShader entityShader, Matrix4f projectionMatrix, dev.engine.loaders.mapLoader.Map map) {
 		this.entityShader = entityShader;
+		this.map = map;
 
 		entityShader.start();
-		entityShader.loadFogVariables(map.getFogDensity(), map.getFogGradient());
-		entityShader.loadMinLightingVariables(map.getMinDiffuseLighting(), map.getMinSpecularLighting());
-		entityShader.loadSkyColor(map.getSkyColor());
+		entityShader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+		entityShader.loadMinLightingVariables(map.getMapSettings().getMinDiffuseLighting(), map.getMapSettings().getMinSpecularLighting());
+		entityShader.loadSkyColor(map.getMapSettings().getSkyColor());
 
 		entityShader.loadProjectionMatrix(projectionMatrix);
 		entityShader.stop();
+	}
+	
+	public void reLoadSettings() {
+		boolean isRunning = entityShader.isRunning();
+		if(!isRunning)
+			entityShader.start();
+		
+		entityShader.loadFogVariables(map.getMapSettings().getFogDensity(), map.getMapSettings().getFogGradient());
+		entityShader.loadMinLightingVariables(map.getMapSettings().getMinDiffuseLighting(), map.getMapSettings().getMinSpecularLighting());
+		entityShader.loadSkyColor(map.getMapSettings().getSkyColor());
+		
+		if(!isRunning)
+			entityShader.stop();
 	}
 
 	public void render(Map<TexturedModel, List<Entity>> entities) {
@@ -61,7 +76,7 @@ public class EntityRenderer {
 			MasterRenderer.DisableCulling();
 
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, modelTexture.getTextureID());
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, modelTexture.getBaseTexture().getTextureID());
 		
 		if(texturedModel.getSpecularMappingTexture() != null) {
 			GL13.glActiveTexture(GL13.GL_TEXTURE1);

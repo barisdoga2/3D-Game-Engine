@@ -110,4 +110,163 @@
 1530782974251	Rename field 'location_waterWaveMoveFactor'
 1530791331434	Rename method 'loadShineValues'
 1530791996687	Rename resource 'white.png'
+<<<<<<< HEAD
 1530812081450	Move compilation unit
+=======
+1530810248086	Encapsulate field 'SCREEN_WIDTH'
+1530810254946	Encapsulate field 'SCREEN_HEIGHT'
+1530810288808	Rename field 'SCREEN_WIDTH'
+1530810292887	Rename field 'SCREEN_HEIGHT'
+1530810890780	Delete element
+1530811484375	Move compilation unit
+1530815344920	Delete element
+1530856087482	Delete element
+1530856092674	Move compilation units
+1530856099310	Move compilation unit
+1530856110127	Rename package 'dev.editor'
+1530856116871	Rename package 'dev.mapeditor'
+1530856123588	Rename package 'dev.editor.ui'
+1530858567680	Rename type 'LoadStructuresWindow'
+1530858713119	Delete element
+1530859666004	Rename type 'LoadResWindow'
+1530859678018	Rename field 'loadStructures'
+1530859791037	Rename method 'loadResFolder'
+1530859911426	Delete element
+1530861669843	Rename local variable 'temp'
+1530864514299	Delete element
+1530867769123	Delete element
+1530867824511	Copy compilation unit
+1530867828888	Rename type 'NormalTexture'
+1530867851293	Rename field 'allModelTextures'
+1530867883064	Rename local variable 'newModelTexture'
+1530868000612	Rename field 'allModelTextures'
+1530868010476	Rename method 'loadAllModelTextures'
+1530868019845	Rename local variable 'modelTexture'
+1530868024860	Rename method 'getModelTexture'
+1530868095342	Copy compilation unit
+1530868099222	Rename type 'SpecularTexture'
+1530868108109	Rename field 'allNormalTextures'
+1530868131518	Rename local variable 'normalTexture'
+1530868142529	Rename local variable 'newNormalTexture'
+1530868179032	Copy compilation unit
+1530868184527	Rename field 'allSpecularTextures'
+1530868210117	Rename method 'getSpecularTexture'
+1530868227169	Rename local variable 'newSpecularTexture'
+1530868785945	Rename method 'addModelTexture'
+1530868854003	Rename method 'addTerrainTexture'
+1530868865204	Rename method 'loadAllNormalTextures'
+1530868960175	Rename method 'loadAllNormalTextures'
+1530868964492	Rename method 'loadAllModelTextures'
+1530868967845	Rename method 'loadAllSpecularTextures'
+1530868971336	Rename method 'loadAllNormalTextures'
+1530868980500	Rename method 'addModelTexture'
+1530869069248	Rename field 'allTerrainTextures'
+1530869073855	Rename local variable 'terrainTexture'
+1530869089389	Rename local variable 'newTerrainTexture'
+1530869146759	Rename field 'allSpecularTextures'
+1530869407922	Rename type 'TextureXML'
+1530869488331	Delete element
+1530879289483	Rename method 'loadAll'
+1530879297298	Rename method 'saveChanges'
+1530881977155	Delete elements
+1530881978816	Copy compilation units
+1530882217864	Delete element
+1530882486381	Rename method 'move'
+1530890382288	Rename type 'AddMapWindow'
+1530894677291	Rename type 'Test'
+1530897595852	Delete elements
+1530898001820	Delete element
+1530898999997	Delete element
+1530899217803	Rename resource 'skyboxTextures'
+1530901778867	Rename resource 'skybox'
+1530901913432	Copy compilation unit
+1530901927105	Delete element
+1530902005006	Rename type 'SkyboxTextureXML'
+1530903256316	Rename resource 'skyboxTextures.xml'
+1530903532249	Rename resource 'skybox1'
+1530903850153	Delete element
+1530941124139	Delete element
+1530944337004	Copy files
+1530944339646	Delete elements
+1530945871186	Delete elements
+1530946579514	Delete element
+1530946943195	Delete elements
+1530946965794	Rename resource 'structs.xml'
+1530946990133	Delete element
+1530947123590	Copy compilation unit
+1530947431331	Rename local variable 'textureLocation'
+1530947467063	Rename type 'TexturesXML'
+1530947583411	Rename resource 'textures.xml'
+1530947586824	Rename resource 'modelTextures.xml'
+1530947590294	Rename resource 'structures.xml'
+1530947627812	Delete elements
+1530947647435	Copy compilation unit
+1530947671694	Rename local variable 'newBaseTexture'
+1530947691097	Rename field 'allBaseTextures'
+1530948499594	Delete element
+1530948575619	Rename field 'texturesXML'
+1530948606406	Delete elements
+1530948615790	Rename type 'ModelTexturesXML'
+1530948621253	Rename type 'StructuresXML'
+1530948626693	Rename type 'BaseTexturesXML'
+1530950164026	Rename resource 'dudvTexture.png'
+1530950168462	Rename resource 'normalTexture.png'
+1530952128807	Copy file
+1530953098295	Rename resource 'warriorV1.png'
+1530954194751	Delete element
+1530954254796	Delete element
+1530955567033	Delete element
+1530957925432	Copy compilation unit
+1530957936214	Copy compilation unit
+1530957942893	Copy compilation unit
+1530957951678	Copy compilation unit
+1530958205343	Delete elements
+1530958391940	Copy compilation unit
+1530958408855	Copy compilation unit
+1530958433608	Copy compilation unit
+1530958450304	Copy compilation unit
+1530958648892	Copy compilation unit
+1530958691146	Copy compilation unit
+1530959231004	Rename type 'MapEditor'
+1530959926661	Move compilation units
+1530959944908	Move compilation units
+1530959947718	Move compilation unit
+1530960035244	Delete element
+1530960384561	Rename field 'j'
+1530960877356	Rename local variable 'j'
+1530960931025	Rename package 'dev.mapEditor'
+1530960970438	Copy package
+1530961018112	Move compilation units
+1530961028129	Delete element
+1530961040735	Move compilation units
+1530961050928	Move compilation unit
+1530961053973	Delete element
+1530961068718	Delete element
+1530961121704	Move compilation unit
+1530961124572	Move compilation unit
+1530961126933	Delete element
+1530961129845	Delete element
+1530961133673	Delete element
+1530976235203	Rename local variable 'fogDensity'
+1530978501613	Rename field 'minDiffuseLighting'
+1530978505388	Rename field 'minSpecularLighting'
+1530985923367	Rename resource 'dudvMap.png'
+1530985927394	Rename resource 'normalMap.png'
+1530986583299	Rename local variable 'sp2'
+1530986588323	Rename local variable 'sp'
+1531035934266	Rename type 'myCanvas'
+1531037442554	Rename type 'MyCanvas'
+1531039621012	Rename method 'makeCurrentDrawableThread'
+1531040324106	Rename type 'NewBaseTexture'
+1531040929577	Move files
+1531040932992	Delete element
+1531040943765	Move files
+1531040945565	Delete element
+1531040949985	Move files
+1531040952806	Move file
+1531040957103	Move files
+1531040961191	Delete element
+1531059143069	Rename field 'deleselectSpecularTexture'
+1531059151044	Rename field 'deleselectSpecularTextureS'
+1531059166486	Rename field 'deleselectNormalTexture'
+>>>>>>> editors

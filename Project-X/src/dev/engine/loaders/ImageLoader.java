@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.EXTTextureFilterAnisotropic;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
@@ -25,7 +26,9 @@ import dev.engine.EngineConfig;
 import dev.engine.skybox.TextureData;
 
 public class ImageLoader {
-
+	
+	private ImageLoader() {}
+	
 	private static List<Integer> allTextures = new ArrayList<Integer>();
 
 	public static int loadTexture(String pngFileName) {
@@ -44,7 +47,7 @@ public class ImageLoader {
 			} else {
 				System.err.println("Anisotropic Filering Doesn't Supported!");
 			}
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Tried to load texture " + pngFileName + ".png , didn't work");
 			System.exit(-1);
@@ -66,7 +69,7 @@ public class ImageLoader {
 		GL11.glBindTexture(GL13.GL_TEXTURE_CUBE_MAP, texID);
 
 		for (int i = 0; i < textureFiles.length; i++) {
-			TextureData data = decodeTextureFile("res/skybox/" + textureFiles[i] + ".png");
+			TextureData data = decodeTextureFile("res/" + textureFiles[i] + ".png");
 
 			GL11.glTexImage2D(GL13.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL11.GL_RGBA, data.getWidth(),
 					data.getHeight(), 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, data.getBuffer());
@@ -113,6 +116,35 @@ public class ImageLoader {
 		}
 
 		return bufferedImage;
+	}
+	
+	public static BufferedImage glTextureToBufferedImage(int textureID) {
+		
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
+		int format = GL11.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_INTERNAL_FORMAT);
+		int width = GL11.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_WIDTH);
+		int height = GL11.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_HEIGHT);
+		
+		ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 4);
+		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+		GL11.glGetTexImage(GL11.GL_TEXTURE_2D, 0, format, GL11.GL_UNSIGNED_BYTE, buffer);
+
+		for (int x = 0; x < width; ++x) {
+		    for (int y = 0; y < height; ++y) {
+		        int i = (x + y * width) * 4;
+
+		        int r = buffer.get(i) & 0xFF;
+		        int g = buffer.get(i + 1) & 0xFF;
+		        int b = buffer.get(i + 2) & 0xFF;
+		        int a = buffer.get(i + 3) & 0xFF;
+
+		        image.setRGB(x, y, (a << 24) | (r << 16) | (g << 8) | b);
+		    }
+		}
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+		
+		return image;
 	}
 
 	public static void cleanUp() {

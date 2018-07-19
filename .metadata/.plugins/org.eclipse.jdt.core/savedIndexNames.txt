@@ -1,4 +1,5 @@
 INDEX VERSION 1.130+B:\Project-X\.metadata\.plugins\org.eclipse.jdt.core
+<<<<<<< HEAD
 3273689814.index
 1204375214.index
 1177904427.index
@@ -22,3 +23,10 @@ INDEX VERSION 1.130+B:\Project-X\.metadata\.plugins\org.eclipse.jdt.core
 916900781.index
 3609888128.index
 2569137926.index
+=======
+2154924903.index
+1714891374.index
+274544912.index
+251251264.index
+408374236.index
+>>>>>>> editors

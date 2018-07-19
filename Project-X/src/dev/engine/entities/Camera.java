@@ -1,5 +1,6 @@
 package dev.engine.entities;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -10,6 +11,8 @@ public class Camera {
 	
 	private static final int MAX_PITCH_DEGREES = 80;
 	private static final int MIN_PITCH_DEGREES = 10;
+	
+	private static final float FREE_ROAM_CAMERA_SPEED = 3f;
 	
 	private Vector3f position = new Vector3f(0, 0, 0);
 	private float pitch = 27.5f;
@@ -23,12 +26,49 @@ public class Camera {
 	public Camera(Player player) {
 		this.player = player;
 	}
+	
+	public Camera() {} // Free Roam
 
 	public void update() {
-		move();
+		if(player == null) // If Free Roam
+			moveAsFreeRoamCamera();
+		else
+			moveAsThirdPersonCamera();
+	}
+	
+	private void moveAsFreeRoamCamera() {
+		if(Mouse.isButtonDown(1)){
+			yaw += Mouse.getDX() * 0.3f;
+			pitch -= Mouse.getDY() * 0.3f;
+		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+			position.z -= FREE_ROAM_CAMERA_SPEED * Math.cos(Math.toRadians(yaw % 360));
+			position.x += FREE_ROAM_CAMERA_SPEED * Math.sin(Math.toRadians(yaw % 360));
+			position.y -= FREE_ROAM_CAMERA_SPEED * Math.sin(Math.toRadians(pitch % 360));
+		}else if(Keyboard.isKeyDown(Keyboard.KEY_S)){
+			position.z += FREE_ROAM_CAMERA_SPEED * Math.cos(Math.toRadians(yaw % 360));
+			position.x -= FREE_ROAM_CAMERA_SPEED * Math.sin(Math.toRadians(yaw % 360));
+			position.y += FREE_ROAM_CAMERA_SPEED * Math.sin(Math.toRadians(pitch % 360));
+		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)){
+			position.z += FREE_ROAM_CAMERA_SPEED * Math.cos(Math.toRadians((yaw + 90) % 360));
+			position.x -= FREE_ROAM_CAMERA_SPEED * Math.sin(Math.toRadians((yaw + 90) % 360));
+		}else if(Keyboard.isKeyDown(Keyboard.KEY_D)){
+			position.z -= FREE_ROAM_CAMERA_SPEED * Math.cos(Math.toRadians((yaw + 90) % 360));
+			position.x += FREE_ROAM_CAMERA_SPEED * Math.sin(Math.toRadians((yaw + 90) % 360));
+		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+			position.y -= FREE_ROAM_CAMERA_SPEED;
+		}else if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+			position.y += FREE_ROAM_CAMERA_SPEED;
+		}
+		
 	}
 
-	private void move() {
+	private void moveAsThirdPersonCamera() {
 		calculateZoom();
 		calculatePitch();
 		calculateAngleAroundPlayer();

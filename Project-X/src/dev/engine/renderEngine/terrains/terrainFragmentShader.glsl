@@ -7,6 +7,7 @@ in vec3 surfaceNormal;							// Per-Pixel Lighting
 in vec3 toLightVector[maxLightCount];			// Per-Pixel Lighting
 in vec3 toCameraVector;							// Specular Lighting
 in float visibility;							// Fog
+in float distanceFromBrush;
 
 uniform sampler2D backgroundTexture;			// Multitexturing
 uniform sampler2D rTexture;						// Multitexturing
@@ -17,6 +18,8 @@ uniform sampler2D blendMapTexture;				// Multitexturing
 uniform float tilingFactor;						// Multitexturing
 uniform float minDiffuseLighting;				// Per-Pixel Lighting
 uniform float minSpecularLighting;				// Specular Lighting
+uniform float brushWidth;
+uniform vec4 brushColor;
 
 uniform vec3 lightColor[maxLightCount];			// Per-Pixel Lighting
 uniform vec3 lightAttenuation[maxLightCount];	// Point Lights
@@ -64,4 +67,7 @@ void main(){
 	out_Color = vec4(totalDiffuseLighting, 1.0) * totalTextureColor + vec4(totalSpecularLighting, 1.0);
 	out_Color = mix(vec4(skyColor, 1.0), out_Color, visibility);
 	
+	if(distanceFromBrush < brushWidth)
+		out_Color = mix(out_Color, brushColor, 0.5);
+
 }
