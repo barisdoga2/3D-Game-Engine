@@ -74,7 +74,7 @@ public class GameEditor extends JFrame{
 		resourceLoader = new ResourceLoader(new File("../Project-X/res"));
 		resourceLoader.loadAllResources();
 		menuBar.lateInit();
-		rightPanel.lateInit(resourceLoader.getAllMaps().get(1));
+		rightPanel.lateInit(resourceLoader.getAllMaps().get(0));
 		editorGameLoop();
 		DisplayManager.DestroyDisplay();
 	}
@@ -82,7 +82,7 @@ public class GameEditor extends JFrame{
 	
 	private void editorGameLoop() {
 	
-		mapToRender = resourceLoader.getMapByName("testMap");
+		mapToRender = resourceLoader.getAllMaps().get(1);
 		masterRenderer = new MasterRenderer(mapToRender);
 		
 		Camera testCamera = new Camera();
@@ -98,6 +98,7 @@ public class GameEditor extends JFrame{
 			if(changeMapToRender != null) {
 				mapToRender = changeMapToRender;
 				masterRenderer = new MasterRenderer(mapToRender);
+				mousePicker = new MousePicker(testCamera, Maths.createProjectionMatrix(), mapToRender.getAllTerrains());
 				changeMapToRender = null;
 			}
 			

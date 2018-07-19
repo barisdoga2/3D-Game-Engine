@@ -19,6 +19,7 @@ public class TerrainEditor extends Editor{
 	private JTabbedPane jTabbedPane;
 	private TerrainHeightEditor heightEditor = new TerrainHeightEditor();
 	private TerrainTextureEditor textureEditor = new TerrainTextureEditor();
+	private TerrainAdder terrainAdder = new TerrainAdder();
 	
 	public TerrainEditor() {
 		super("Terrain Editor");
@@ -34,7 +35,8 @@ public class TerrainEditor extends Editor{
 		
 		jTabbedPane.add("Height Editor", heightEditor);
 		jTabbedPane.add("Texture Editor", textureEditor);
-		jTabbedPane.setSelectedComponent(textureEditor);
+		jTabbedPane.add("Terrain Adder", terrainAdder);
+		jTabbedPane.setSelectedComponent(terrainAdder);
 		
 		this.add(jTabbedPane);
 	}

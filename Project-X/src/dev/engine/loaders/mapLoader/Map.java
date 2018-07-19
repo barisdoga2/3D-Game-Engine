@@ -121,10 +121,10 @@ public class Map extends XMLManager{
 		allTerrains.add(t);
 		
 		Element newElement = doc.createElement("terrain");
-		newElement.setAttribute("name", name);
+		newElement.setAttribute("name", t.getName());
 		
-		addChildElement(newElement, "Xgrid", "");
-		addChildElement(newElement, "Zgrid", "");
+		addChildElement(newElement, "Xgrid", t.getGridX() + "");
+		addChildElement(newElement, "Zgrid", t.getGridZ() + "");
 		
 		TerrainTexturePack ttp = t.getTerrainTexturePack();
 		addChildElement(newElement, "backgroundBaseTextureName", ttp.getBackgroundTerrainTexture().getName());

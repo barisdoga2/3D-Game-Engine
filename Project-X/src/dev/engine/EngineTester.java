@@ -29,7 +29,7 @@ public class EngineTester {
 		ResourceLoader resourceLoader = new ResourceLoader(new File("res"));
 		resourceLoader.loadAllResources();
 		
-		testMap = resourceLoader.getMapByName("testMap");
+		testMap = resourceLoader.getAllMaps().get(1);
 		Terrain testTerrain = testMap.getAllTerrains().get(0);
 
 		Player player = new Player("Player", resourceLoader.getTexturedModelByName("warriorV1") ,new Vector3f(0, testTerrain.getHeight(0, 0), 0), new Vector3f(0, 0, 0), new Vector3f(10, 10, 10), testMap);

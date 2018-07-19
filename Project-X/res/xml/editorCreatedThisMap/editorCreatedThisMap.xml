@@ -24,4 +24,15 @@
 </lights>
 <entities>
 </entities>
+<terrain name="terrain">
+<Xgrid>0</Xgrid>
+<Zgrid>0</Zgrid>
+<backgroundBaseTextureName>backgroundTexture</backgroundBaseTextureName>
+<rTextureBaseName>rTexture</rTextureBaseName>
+<gTextureBaseName>gTexture</gTextureBaseName>
+<bTextureBaseName>bTexture</bTextureBaseName>
+<aTextureBaseName>aTexture</aTextureBaseName>
+<blendMapTextureBaseName>blendMapterrain</blendMapTextureBaseName>
+<heightMapTextureBaseName>heightMapterrain</heightMapTextureBaseName>
+</terrain>
 </editorCreatedThisMap>

@@ -83,7 +83,7 @@ public class Terrain {
 		GL11.glTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, width, height, format, GL11.GL_FLOAT, bb);
 		
 		BufferedImage heightMap = ImageLoader.glTextureToBufferedImage(heightMapTexture.getTextureID());
-		regenerateTerrain(heightMap);
+		this.rawModel = generateTerrain(heightMap);
 	}
 	
 	private static float smoothStep(int x, int y, int xRef, int yRef, float padding){

@@ -31,8 +31,6 @@
 
 <baseTexture name="stallTexture" path="baseTextures/stallTexture"/>
 <baseTexture name="warriorV1Texture" path="baseTextures/warriorV1Texture"/>
-
-
-
-
+<baseTexture name="heightMapterrain" path="baseTextures/heightMapterrain"/>
+<baseTexture name="blendMapterrain" path="baseTextures/blendMapterrain"/>
 </baseTextures>
